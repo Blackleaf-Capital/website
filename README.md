@@ -68,8 +68,7 @@ src/
 ├── pages/         # Page components
 ├── hooks/         # Custom React hooks
 ├── utils/         # Utility functions
-├── types/         # TypeScript type definitions
-└── lib/           # Third-party library configurations
+└── assets/        # Static assets (images, icons, etc.)
 ```
 
 ## Contributing
