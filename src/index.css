@@ -10,7 +10,7 @@
   font-display: swap;
 }
 
-@theme {
+:root {
   /* Colors */
   --color-primary: #840E0E;
   --color-brand-black: #000000;
@@ -21,4 +21,3 @@
   --font-secondary: "Cormorant Garamond", serif;
   --font-logo: "Roxborough CF", sans-serif;
 }
-

@@ -11,6 +11,7 @@ Blackleaf Capital operates a virtual long-only public equity investment portfoli
 ## Tech Stack
 
 - **Frontend**: React with TypeScript
+- **Routing**: React Router DOM
 - **Build Tool**: Vite
 - **Database**: Supabase
 - **Styling**: Tailwind CSS
@@ -60,16 +61,48 @@ npm run dev
 - `npm run format` - Format code with Prettier
 - `npm run format:check` - Check code formatting with Prettier
 
+## Features
+
+- **Responsive Design**: Mobile-first approach with responsive navigation
+- **Single Page Application**: Client-side routing with React Router
+- **Multi-page Navigation**: Homepage, Events, Team, Sponsors, and Join pages
+- **Mobile Navigation**: Collapsible sidebar for mobile devices
+- **Desktop Navigation**: Fixed navigation bar for desktop screens
+
 ## Project Structure
 
 ```
 src/
 ├── components/     # Reusable UI components
+│   ├── NavBar.tsx  # Desktop navigation bar component
+│   └── SideBar.tsx # Mobile sidebar navigation component
 ├── pages/         # Page components
+│   ├── Events.tsx  # Events page component
+│   ├── Homepage.tsx # Homepage component
+│   ├── Join.tsx    # Join Us page component
+│   ├── Sponsors.tsx # Sponsors page component
+│   └── Team.tsx    # Team page component
 ├── hooks/         # Custom React hooks
 ├── utils/         # Utility functions
 └── assets/        # Static assets (images, icons, etc.)
+    ├── fonts/     # Custom fonts
+    └── images/    # Logo and brand images
 ```
+
+## Navigation
+
+The application includes a responsive navigation system:
+
+- **Desktop**: Fixed navigation bar visible on screens ≥1024px
+- **Mobile**: Collapsible sidebar with overlay for screens <1024px
+
+### Available Routes
+
+- `/` - Homepage
+- `/events` - Events and workshops
+- `/team` - Meet our team
+- `/sponsors` - Our sponsors and partners  
+- `/join` - Join Blackleaf Capital
 
 ## Contributing
 
