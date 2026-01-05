@@ -12,39 +12,32 @@ const NavBar = () => {
   ];
 
   return (
-    <nav className="bg-white shadow-sm border-b border-brand-gray/20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <img
-              src="/logo.png"
-              alt="Blackleaf Capital"
-              className="h-8 w-auto"
-            />
-            <span className="ml-3 font-logo text-xl text-brand-black">
-              Blackleaf Capital
-            </span>
-          </Link>
+    <nav className="sticky top-0 left-0 z-50 bg-white hidden lg:flex flex-row items-center justify-between w-full py-5 px-[5%] border-b border-b-black/10">
+      <div className="flex flex-row items-center cursor-pointer">
+        <div className='my-auto font-logo text-primary text-4xl'>BC</div>
+        <div className='mx-2 w-[0.8px] h-8 bg-black/70'></div>
+        <div className='mt-1 font-primary uppercase text-[14px]'>Blackleaf <br />Capital</div>
 
-          {/* Navigation Links */}
-          <div className="flex space-x-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`px-3 py-2 text-sm font-medium transition-colors duration-200 ${
-                  location.pathname === item.path
-                    ? 'text-primary border-b-2 border-primary'
-                    : 'text-brand-black hover:text-primary'
-                }`}
-              >
-                {item.name}
-              </Link>
-            ))}
-          </div>
-        </div>
       </div>
+      <ul className="flex flex-row items-center gap-5.5">
+        {navItems.map((item, index) => (
+          <li key={index} className="cursor-pointer font-secondary text-[18px] hover:text-primary">
+            <Link
+              to={item.path}
+              className={`transition-colors duration-200 ${location.pathname === item.path ? 'text-primary' : 'text-brand-black'
+                }`}
+            >
+              {item.name}
+            </Link>
+          </li>
+        ))}
+      </ul>
+      <Link
+        to="/join"
+        className="rounded-4xl bg-primary text-white px-8 py-3 flex flex-row items-center gap-4 cursor-pointer transition-all ease-in-out hover:translate-x-2 font-secondary"
+      >
+        Get Involved
+      </Link>
     </nav>
   );
 };

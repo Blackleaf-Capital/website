@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap');
-@import "tailwindcss";
+@import 'tailwindcss';
+@import './hamburger.css';
 
 /* Custom font face for logo font */
 @font-face {
@@ -10,14 +11,14 @@
   font-display: swap;
 }
 
-:root {
+@theme {
   /* Colors */
-  --color-primary: #840E0E;
+  --color-primary: #840e0e;
   --color-brand-black: #000000;
-  --color-brand-gray: #C8C8C8;
+  --color-brand-gray: #c8c8c8;
 
   /* Fonts */
-  --font-primary: "Cinzel", serif;
-  --font-secondary: "Cormorant Garamond", serif;
-  --font-logo: "Roxborough CF", sans-serif;
+  --font-primary: 'Cinzel', serif;
+  --font-secondary: 'Cormorant Garamond', serif;
+  --font-logo: 'Roxborough CF', sans-serif;
 }
