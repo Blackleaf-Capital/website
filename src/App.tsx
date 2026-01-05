@@ -42,13 +42,7 @@ function App() {
           </Routes>
         </main>
 
-        {/* Mobile Sidebar Overlay */}
-        {isSidebarOpen && (
-          <div
-            className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
-            onClick={toggleSidebar}
-          />
-        )}
+        {/* Mobile Sidebar Overlay - Now handled in SideBar component */}
       </div>
     </Router>
   );
