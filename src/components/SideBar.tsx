@@ -10,24 +10,33 @@ const SideBar = ({ isOpen, onToggle }: SideBarProps) => {
 
   const navItems = [
     { name: 'Home', path: '/' },
-    { name: 'Events', path: '/events' },
     { name: 'Team', path: '/team' },
-    { name: 'Sponsors', path: '/sponsors' },
-    { name: 'Join', path: '/join' },
+    { name: 'Sponsors &  Partners', path: '/sponsors' },
+    { name: 'Events', path: '/events' },
+    { name: 'Join Us', path: '/join' },
   ];
+
+  // Function to scroll to top smoothly and close sidebar
+  const handleNavClick = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+    onToggle(); // Close the sidebar
+  };
 
   return (
     <>
       {/* Mobile Header */}
       <nav className="sticky top-0 left-0 z-100 bg-white lg:hidden flex flex-row items-center justify-between w-full py-5 px-[5%] border-b border-b-black/20">
-        <div className="flex flex-row items-center">
+        <Link to="/" onClick={handleNavClick} className="flex flex-row items-center">
           <div className="my-auto font-logo text-primary text-2xl">BC</div>
           <div className="mx-2 w-[0.8px] h-8 bg-black/70"></div>
           <div className="my-auto font-primary uppercase text-[12px]">
             Blackleaf <br />
             Capital
           </div>
-        </div>
+        </Link>
         <button
           className={`hamburger hamburger--spin ${isOpen ? 'is-active' : ''}`}
           type="button"
@@ -63,7 +72,7 @@ const SideBar = ({ isOpen, onToggle }: SideBarProps) => {
                 >
                   <Link
                     to={item.path}
-                    onClick={onToggle}
+                    onClick={handleNavClick}
                     className={`w-full transition-colors duration-200 ${
                       location.pathname === item.path
                         ? 'text-primary group-hover:text-white font-medium'
@@ -78,7 +87,7 @@ const SideBar = ({ isOpen, onToggle }: SideBarProps) => {
           </nav>
         </div>
         <div className="mx-6 w-fit rounded-4xl bg-primary text-white px-8 py-3 flex flex-row items-center gap-4 cursor-pointer transition-all ease-in-out hover:translate-x-2">
-          <Link to="/join" onClick={onToggle} className="text-white">
+          <Link to="/join" onClick={handleNavClick} className="text-white">
             Get Involved
           </Link>
         </div>
