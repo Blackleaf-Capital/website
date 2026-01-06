@@ -20,7 +20,7 @@ function App() {
   };
 
   return (
-    <Router>
+    <Router basename="/website">
       <div className="min-h-screen bg-white relative ">
         {/* Desktop Navigation - Hidden on mobile */}
         <div className="hidden lg:block sticky top-0 z-50">
