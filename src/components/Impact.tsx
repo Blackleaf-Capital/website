@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import network from '../assets/images/network.jpeg'
 
 const Impact = () => {
@@ -8,7 +9,11 @@ const Impact = () => {
                 <h2 className="w-full lg:w-[75%] font-heading text-2xl lg:text-4xl uppercase my-2">
                     A Canada-Wide Network of Excellence
                 </h2>
-                <p className="text-[18px] cursor-pointer underline text-white">Learn more</p>
+                <Link 
+                to="/join"
+                className="text-[18px] cursor-pointer underline text-white">
+                    Learn more
+                </Link>
             </div>
             <div className="lg:relative">
                 <p className="text-[18px] mb-8 lg:mb-0">Founded in 2023, our strength lies in diversity. Blackleaf Capital unite ambitious students from leading universities across Canada. From coast to coast, with over X members to date, our members form a powerful national network, bringing diverse perspectives to our collaborative projects and professional settings.</p>

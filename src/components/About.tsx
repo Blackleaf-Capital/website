@@ -27,7 +27,7 @@ const About = () => {
   ];
 
   return (
-    <div className="w-[90%] mx-auto my-[10vh] mt-[20vh]">
+    <div className="w-[90%] mx-auto my-[10vh] lg:mt-[20vh]">
       {/* Hero Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-0 mb-16">
         <div className='w-full lg:w-[90%]'>
