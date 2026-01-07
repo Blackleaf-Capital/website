@@ -2,10 +2,10 @@ import network from '../assets/images/network.jpeg'
 
 const Impact = () => {
    return (
-        <div className="w-full bg-primary my-[20vh] py-20 px-[10%] lg:px-[5%] grid grid-cols-1 lg:grid-cols-2 lg:mb-[20vh] text-white gap-5 lg:gap-0 ">
+        <div className="w-full bg-primary my-[20vh] py-20 px-[10%] lg:px-[5%] grid grid-cols-1 lg:grid-cols-2 lg:mb-[50vh] text-white gap-5 lg:gap-0 ">
             <div>
                 <div className="w-fit rounded-4xl border border-white px-6 py-2 mb-5 text-white">Our Network</div>
-                <h2 className="w-[90%] lg:w-[75%] font-heading text-4xl uppercase my-2">
+                <h2 className="w-full lg:w-[75%] font-heading text-2xl lg:text-4xl uppercase my-2">
                     A Canada-Wide Network of Excellence
                 </h2>
                 <p className="text-[18px] cursor-pointer underline text-white">Learn more</p>
