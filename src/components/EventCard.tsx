@@ -34,6 +34,7 @@ const EventCard = ({ event }: EventCardProps) => {
       <p>{event.description}</p>
       <Link
         to={event.social}
+        aria-label={event.title}
         className="my-4 w-[40px] aspect-square rounded-full border border-primary flex items-center justify-center hite transition"
       >
         <Icon size={18} className="text-primary" />
