@@ -73,7 +73,7 @@ const About = () => {
         </div>
       </div>
         </div>
-        <div className="w-full aspect-square bg-black rounded-xl flex items-center justify-center">
+        <div className="hidden w-full lg:flex aspect-square bg-black rounded-xl  items-center justify-center">
         </div>
       </div>
 
