@@ -4,6 +4,7 @@ import { useRef} from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { Swiper as SwiperType } from 'swiper';
 import { Pagination, Navigation } from 'swiper/modules';
+import event1 from "../assets/images/event1.png"
 
 // Import Swiper styles
 import 'swiper/css';
@@ -17,7 +18,7 @@ const eventsData = [
     title: "Investment Fundamentals Workshop",
     description:
       "Learn the basics of investment analysis, portfolio management, and risk assessment with industry professionals.",
-    image: "/api/placeholder/400/250",
+    image: "",
     social: "instagram",
   },
   {

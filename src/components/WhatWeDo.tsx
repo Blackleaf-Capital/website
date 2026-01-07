@@ -22,7 +22,7 @@
 // ];
 const WhatWeDo = () => {
   return (
-    <div className="my-[20vh] w-full mx-auto h-[50vh] bg-[#F6F6F6]">
+    <div className="md:hidden w-full py-[5vh] bg-black">
      
     </div>
   )

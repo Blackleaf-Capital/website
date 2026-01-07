@@ -29,7 +29,9 @@ const EventCard = ({ event }: EventCardProps) => {
 
   return (
     <div className="border rounded-2xl cursor-pointer border-black/20 p-4">
-      <div className="w-full aspect-[1/.6] bg-black rounded-2xl"></div>
+     <div className="w-full aspect-[1/.6] rounded-2xl overflow-hidden bg-black">
+        {/* <img src={event.image} alt="Event Image" className="w-full h-full object-cover" /> */}
+      </div>
       <h1 className="font-primary my-3 font-medium">{event.title}</h1>
       <p>{event.description}</p>
       <Link

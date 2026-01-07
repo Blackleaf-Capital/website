@@ -140,11 +140,11 @@ const Team = () => {
                                     {/* Member Info Overlay */}
                                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 rounded-b-2xl">
                                         <div className="text-white">
-                                            
+
                                             <div className="flex items-center justify-between">
                                                 <div>
-                                                <h3 className="font-primary text-lg font-semibold">{member.name}</h3>
-                                                <p className="font-secondary text-sm text-white/90">{member.position}</p>
+                                                    <h3 className="font-primary text-lg font-semibold">{member.name}</h3>
+                                                    <p className="font-secondary text-sm text-white/90">{member.position}</p>
                                                 </div>
                                                 <a
                                                     href={member.linkedin}
