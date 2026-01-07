@@ -4,7 +4,6 @@ import { useRef} from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { Swiper as SwiperType } from 'swiper';
 import { Pagination, Navigation } from 'swiper/modules';
-import event1 from "../assets/images/event1.png"
 
 // Import Swiper styles
 import 'swiper/css';
