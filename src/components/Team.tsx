@@ -1,4 +1,4 @@
-import { FaArrowRightLong } from "react-icons/fa6"
+import { FaArrowRightLong, FaLinkedinIn } from "react-icons/fa6"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
@@ -31,8 +31,9 @@ const Team = () => {
         {
             id: 1,
             name: "John Doe",
-            position: "President",
+            position: "President & CEO",
             university: "University of Toronto",
+            linkedin: "https://linkedin.com/in/johndoe",
             image: head
         },
         {
@@ -40,6 +41,7 @@ const Team = () => {
             name: "Jane Smith",
             position: "VP Operations",
             university: "McGill University",
+            linkedin: "https://linkedin.com/in/janesmith",
             image: head2
         },
         {
@@ -47,6 +49,7 @@ const Team = () => {
             name: "Michael Brown",
             position: "VP Finance",
             university: "UBC",
+            linkedin: "https://linkedin.com/in/michaelbrown",
             image: head
         },
         {
@@ -54,6 +57,7 @@ const Team = () => {
             name: "Sarah Johnson",
             position: "Director of Events",
             university: "York University",
+            linkedin: "https://linkedin.com/in/sarahjohnson",
             image: head2
         },
         {
@@ -61,13 +65,15 @@ const Team = () => {
             name: "David Lee",
             position: "Marketing Lead",
             university: "Western University",
+            linkedin: "https://linkedin.com/in/davidlee",
             image: head
         },
         {
             id: 6,
             name: "Emily Chen",
             position: "Tech Lead",
-            university: "Waterloo",
+            university: "University of Waterloo",
+            linkedin: "https://linkedin.com/in/emilychen",
             image: head2
         }
     ];
@@ -127,13 +133,32 @@ const Team = () => {
                                 <div className="relative h-[80%] lg:h-[80%] w-full bg-primary rounded-2xl overflow-visible flex justify-center">
                                     <img
                                         src={member.image}
-                                        alt="Blackleaf member"
+                                        alt={`${member.name} - ${member.position}`}
                                         className="absolute bottom-0 h-[120%] w-auto object-cover object-bottom"
                                     />
+
+                                    {/* Member Info Overlay */}
+                                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 rounded-b-2xl">
+                                        <div className="text-white">
+                                            <h3 className="font-primary text-lg font-semibold mb-1">{member.name}</h3>
+                                            <p className="font-secondary text-sm text-white/90 mb-2">{member.position}</p>
+                                            <div className="flex items-center justify-between">
+                                                <span className="font-secondary text-xs text-white/80">{member.university}</span>
+                                                <a
+                                                    href={member.linkedin}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    aria-label={`View ${member.name}'s LinkedIn profile`}
+                                                    className="bg-white/20 hover:bg-white/30 p-2 rounded-full transition-all duration-200"
+                                                >
+                                                    <FaLinkedinIn className="text-white text-sm" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </SwiperSlide>
-
                     ))}
                 </Swiper>
             </div>
