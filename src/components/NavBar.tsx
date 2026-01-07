@@ -22,7 +22,7 @@ const NavBar = () => {
 
   return (
     <nav className=" bg-white hidden lg:flex flex-row items-center justify-between w-full py-5 px-[5%] border-b border-b-black/10 backdrop-blur-sm">
-      <Link to="/" onClick={scrollToTop} className="flex flex-row items-center cursor-pointer">
+      <Link to="/" aria-label="logo" onClick={scrollToTop} className="flex flex-row items-center cursor-pointer">
         <div className='my-auto font-logo text-primary text-4xl'>BC</div>
         <div className='mx-2 w-[0.8px] h-8 bg-black/70'></div>
         <div className='mt-1 font-primary uppercase text-[14px]'>Blackleaf <br />Capital</div>
@@ -33,6 +33,7 @@ const NavBar = () => {
             <Link
               to={item.path}
               onClick={scrollToTop}
+              aria-label={item.name}
               className={`transition-colors duration-200 ${location.pathname === item.path ? 'text-primary' : 'text-brand-black'
                 }`}
             >
@@ -44,6 +45,7 @@ const NavBar = () => {
       <Link
         to="/join"
         onClick={scrollToTop}
+        aria-label="Get Involved"
         className="rounded-4xl bg-primary text-white px-8 py-3 flex flex-row items-center gap-4 cursor-pointer transition-all ease-in-out hover:translate-x-2 font-secondary"
       >
         Get Involved

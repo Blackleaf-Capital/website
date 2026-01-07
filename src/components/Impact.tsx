@@ -11,6 +11,7 @@ const Impact = () => {
                 </h2>
                 <Link 
                 to="/join"
+                aria-label='Learn more'
                 className="text-[18px] cursor-pointer underline text-white">
                     Learn more
                 </Link>
