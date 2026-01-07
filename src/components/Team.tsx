@@ -73,11 +73,12 @@ const Team = () => {
     ];
 
     return (
-        <div className="w-[90%] mx-auto lg:my-[10vh]  lg:w-full lg:py-20 lg:pt-[20vh] px-[5%] grid grid-cols-1 lg:grid-cols-[60%_40%] items-center">
+        <div className="w-[90%] mx-auto  lg:w-full lg:my-[10vh] px-[5%] grid grid-cols-1 lg:grid-cols-[60%_40%] items-center">
             <div className="w-full lg:w-[80%] lg:ml-[10%] relative pb-16">
                 {/* Custom Navigation Button - Outside */}
                 <button
                     onClick={() => swiperRef.current?.slideNext()}
+                    aria-label="View next team member"
                     className="absolute lg:-left-16 top-1/2 -translate-y-1/2 z-10 bg-black lg:bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-primary/90 transition-all"
                 >
                     <FaArrowRightLong />
@@ -139,7 +140,7 @@ const Team = () => {
 
             <div className="flex flex-col justify-center">
                 <div className="w-fit rounded-4xl border border-primary px-6 py-2 mb-5 text-primary">Our Team</div>
-                <h2 className="w-full lg:w-[90%] font-primary text-4xl uppercase my-2">Student-led,<br /> Industry-Focused</h2>
+                <h2 className="w-full lg:w-[90%] font-primary text-2xl lg:text-4xl uppercase my-2">Student-led,<br /> Industry-Focused</h2>
                 <p className="text-[18px] w-full font-secondary lg:w-[80%]">Blackleaf is powered by a diverse cohort of students who bring academic rigor and analytical insight to our investment fund. Beyond the numbers, our leadership is dedicated to fostering an inclusive ecosystem where the next generation of Black financial professionals can thrive.</p>
                 <Link
                     to="/team"

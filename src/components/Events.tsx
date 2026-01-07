@@ -39,7 +39,7 @@ const Events = () => {
   return (
     <div className="w-full py-[10vh] px-[5%] bg-[#F6F6F6] pb-[30vh] mt-[5vh]">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center w-full mb-8">
-        <h1 className="text-3xl lg:text-4xl font-primary mb-4 sm:mb-0">Social Posts</h1>
+        <h1 className="text-2xl lg:text-4xl font-primary mb-4 sm:mb-0">Social Posts</h1>
         <p></p>
         <Link
           to="/events"

@@ -22,7 +22,9 @@
 // ];
 const WhatWeDo = () => {
   return (
-    <div>WhatWeDo</div>
+    <div className="my-[20vh] w-full mx-auto h-[50vh] bg-[#F6F6F6]">
+     
+    </div>
   )
 }
 

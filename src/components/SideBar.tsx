@@ -41,6 +41,8 @@ const SideBar = ({ isOpen, onToggle }: SideBarProps) => {
           className={`hamburger hamburger--spin ${isOpen ? 'is-active' : ''}`}
           type="button"
           onClick={onToggle}
+          aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
+          aria-expanded={isOpen}
         >
           <span className="hamburger-box">
             <span className="hamburger-inner"></span>
