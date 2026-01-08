@@ -9,6 +9,11 @@ export interface Event {
   image: string
   social: string
   title: string
+  category?: string
+  link?: string
+  date?: string
+
+
 }
 
 interface EventCardProps {
@@ -24,6 +29,25 @@ const socialIcons: Record<SocialPlatform, IconType> = {
 }
 
 const EventCard = ({ event }: EventCardProps) => {
+  const formatDate = (
+    dateStr: string,
+    locale: string = 'en-US',
+    options?: Intl.DateTimeFormatOptions
+  ): string => {
+    if (!dateStr) return '';
+  
+    const date = new Date(dateStr);
+  
+    // Default options if none provided
+    const defaultOptions: Intl.DateTimeFormatOptions = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    };
+  
+    return date.toLocaleDateString(locale, options || defaultOptions);
+  };
+
   const Icon: IconType =
     (socialIcons[event.social as SocialPlatform] as IconType) || FaGlobe
 
@@ -34,6 +58,7 @@ const EventCard = ({ event }: EventCardProps) => {
       </div>
       <h1 className="font-primary my-3 font-medium">{event.title}</h1>
       <p>{event.description}</p>
+      <div className="flex flex-row items-center justify-between">
       <Link
         to={event.social}
         aria-label={event.title}
@@ -41,6 +66,9 @@ const EventCard = ({ event }: EventCardProps) => {
       >
         <Icon size={18} className="text-primary" />
       </Link>
+      {event.date && <p className="">{formatDate(event.date)}</p>}
+      </div>
+    
     </div>
   )
 }

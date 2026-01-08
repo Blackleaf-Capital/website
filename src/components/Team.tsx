@@ -79,7 +79,7 @@ const Team = () => {
     ];
 
     return (
-        <div className="w-[90%] mx-auto  lg:w-full lg:my-[10vh] px-[5%] grid grid-cols-1 lg:grid-cols-[60%_40%] items-center">
+        <div className="w-[90%] mx-auto lg:py-[10vh] lg:w-full lg:my-[10vh] px-[5%] grid grid-cols-1 lg:grid-cols-[60%_40%] items-center">
             <div className="w-full lg:w-[80%] lg:ml-[10%] relative pb-16">
                 {/* Custom Navigation Button - Outside */}
                 <button
