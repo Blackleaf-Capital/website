@@ -1,4 +1,4 @@
-import { FaQuoteRight } from "react-icons/fa6";
+import { FaLinkedinIn, FaQuoteRight } from "react-icons/fa6";
 
 type TestimonialProps = {
     name: string;
@@ -47,9 +47,10 @@ const Testimonial = ({
                     href={linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm text-[#00850]inline-block hover:underline"
+                    className="bg-black/20 p-2 flex rounded-full items-center text justify-center text-sm text-[#00850]inline-block hover:underline"
                 >
-                    LinkedIn
+                    <FaLinkedinIn />
+
                 </a>
             </div>
         </div>
