@@ -9,7 +9,7 @@ const eventsData = [
     title: "Investment Fundamentals Workshop",
     description: "Learn the basics of investment analysis, portfolio management, and risk assessment with industry professionals.",
     image: "",
-    social: "instagram",
+    social: "web",
     category: "workshop",
     date: "2026-02-15"
   },
@@ -18,7 +18,7 @@ const eventsData = [
     title: "Networking Mixer: Toronto Chapter",
     description: "Connect with fellow students, alumni, and industry professionals in an informal setting.",
     image: "/api/placeholder/400/250",
-    social: "linkedin",
+    social: "web",
     category: "networking",
     date: "2026-03-10"
   },
@@ -27,7 +27,7 @@ const eventsData = [
     title: "Annual Conference 2024",
     description: "Join us for our flagship annual conference featuring keynote speakers and panel discussions.",
     image: "/api/placeholder/400/250",
-    social: "instagram",
+    social: "web",
     category: "conference",
     date: "2024-11-20"
   },
@@ -36,7 +36,7 @@ const eventsData = [
     title: "Financial Modeling Workshop",
     description: "Hands-on workshop covering advanced financial modeling techniques and best practices.",
     image: "",
-    social: "instagram",
+    social: "web",
     category: "workshop",
     date: "2026-01-25"
   },
@@ -45,7 +45,7 @@ const eventsData = [
     title: "Alumni Networking Event",
     description: "Connect with successful alumni working in top financial institutions.",
     image: "/api/placeholder/400/250",
-    social: "linkedin",
+    social: "webn",
     category: "networking",
     date: "2025-12-05"
   },
@@ -54,7 +54,7 @@ const eventsData = [
     title: "Guest Speaker: Private Equity Insights",
     description: "Industry veteran shares insights on private equity trends and career opportunities.",
     image: "/api/placeholder/400/250",
-    social: "instagram",
+    social: "web",
     category: "conference",
     date: "2026-04-18"
   },
@@ -63,7 +63,7 @@ const eventsData = [
     title: "Technical Analysis Workshop",
     description: "Master chart patterns and technical indicators for better trading decisions.",
     image: "/api/placeholder/400/250",
-    social: "twitter",
+    social: "web",
     category: "workshop",
     date: "2025-10-12"
   },
@@ -72,7 +72,7 @@ const eventsData = [
     title: "Industry Networking Night",
     description: "Meet recruiters and professionals from leading investment firms.",
     image: "/api/placeholder/400/250",
-    social: "linkedin",
+    social: "web",
     category: "networking",
     date: "2026-05-22"
   },
@@ -81,7 +81,7 @@ const eventsData = [
     title: "Annual Conference 2023 Recap",
     description: "Review highlights and key takeaways from last year's conference.",
     image: "/api/placeholder/400/250",
-    social: "instagram",
+    social: "web",
     category: "conference",
     date: "2023-12-01"
   }
@@ -395,7 +395,9 @@ const Events = () => {
       {/* Events Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
         {currentEvents.map((event) => (
-          <EventCard key={event.id} event={event} />
+          <Link key={event.id} to={`/events/${event.id}`}>
+          <EventCard event={event} />
+        </Link>
         ))}
       </div>
 
