@@ -11,6 +11,7 @@ import Sponsors from './pages/Sponsors';
 import Join from './pages/Join';
 
 import './App.css';
+import EventDetails from './components/EventDetails';
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -37,6 +38,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/events" element={<Events />} />
+            <Route path="/events/:eventId" element={<EventDetails />} />
             <Route path="/team" element={<Team />} />
             <Route path="/sponsors" element={<Sponsors />} />
             <Route path="/join" element={<Join />} />

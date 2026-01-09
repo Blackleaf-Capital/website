@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom"
-import { FaInstagram, FaGlobe } from "react-icons/fa6"
+import { FaInstagram} from "react-icons/fa6"
 import type { IconType } from "react-icons"
 import { TiSocialLinkedin } from "react-icons/ti"
+import { FiArrowUpRight } from "react-icons/fi"
 
 export interface Event {
   id: number
@@ -49,7 +50,7 @@ const EventCard = ({ event }: EventCardProps) => {
   };
 
   const Icon: IconType =
-    (socialIcons[event.social as SocialPlatform] as IconType) || FaGlobe
+    (socialIcons[event.social as SocialPlatform] as IconType) || FiArrowUpRight
 
   return (
     <div className="border rounded-2xl cursor-pointer border-black/20 p-4">
