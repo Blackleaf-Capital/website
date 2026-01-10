@@ -13,6 +13,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: github-pages  # Add this line!
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -20,13 +21,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          # Removed cache to avoid npm bug with optional dependencies
       - name: Clean install dependencies
         run: |
           rm -rf node_modules package-lock.json
           npm install --include=optional
       - name: Build
         run: npm run build
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
