@@ -1,8 +1,21 @@
 import { Link } from 'react-router-dom'
-import network from '../assets/images/network.jpeg'
 import { MdOutlineArrowRightAlt } from 'react-icons/md'
+import { useEffect, useState } from 'react';
+import { getGroupPhoto } from '../apis/homepage';
 
 const Impact = () => {
+    const [groupPhoto, setGroupPhoto] = useState(null);
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const groupPhotoImg = await getGroupPhoto();
+            setGroupPhoto(groupPhotoImg[0].image);
+        };
+
+        fetchData();
+    }, []);
+
     return (
         <div>
             <div className="w-full bg-primary py-20 px-[10%] lg:px-[5%] grid grid-cols-1 lg:grid-cols-2 text-white gap-5 lg:gap-0 relative">
@@ -22,25 +35,27 @@ const Impact = () => {
                     <p className="text-[18px] mb-8 lg:mb-0">Founded in 2023, our strength lies in diversity. Blackleaf Capital unite ambitious students from leading universities across Canada. From coast to coast, with over X members to date, our members form a powerful national network, bringing diverse perspectives to our collaborative projects and professional settings.</p>
 
                     <div className="lg:hidden w-full h-[250px] overflow-hidden">
+                       {groupPhoto &&
                         <img
-                            src={network}
+                            src={groupPhoto}
                             alt="Blackleaf group picture"
                             className="w-full h-full object-cover"
-                        />
+                        />}
                     </div>
 
                     <div className="hidden lg:block lg:absolute lg:-bottom-[150%] w-full lg:w-[80%] h-[40vh] overflow-hidden">
+                       { groupPhoto &&
                         <img
-                            src={network}
+                            src={groupPhoto}
                             alt="Blackleaf group picture"
                             className="w-full h-full object-cover"
-                        />
+                        />}
                     </div>
                 </div>
             </div>
             <div className="w-full px-[calc(5%+24px)]  md:px-[5%] py-[10vh] lg:py-[20vh] bg-black ">
                 <Link
-                    to="/sponsor"
+                    to="/sponsors"
                     aria-label='sponsor and partners'
                     className="text-[18px] cursor-pointer text-white flex flex-row items-center gap-2">
                     Partner with Purpose

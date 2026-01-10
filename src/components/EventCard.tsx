@@ -13,8 +13,6 @@ export interface Event {
   category?: string
   link?: string
   date?: string
-
-
 }
 
 interface EventCardProps {
@@ -25,8 +23,7 @@ type SocialPlatform = "instagram" | "linkedin"
 
 const socialIcons: Record<SocialPlatform, IconType> = {
   instagram: FaInstagram,
-  linkedin: TiSocialLinkedin
-  ,
+  linkedin: TiSocialLinkedin,
 }
 
 const EventCard = ({ event }: EventCardProps) => {
@@ -55,18 +52,16 @@ const EventCard = ({ event }: EventCardProps) => {
   return (
     <div className="border rounded-2xl cursor-pointer border-black/20 p-4">
      <div className="w-full aspect-[1/.6] rounded-2xl overflow-hidden bg-black">
-        {/* <img src={event.image} alt="Event Image" className="w-full h-full object-cover" /> */}
+        <img src={event?.image} alt="Event Image" className="w-full h-full object-cover" />
       </div>
       <h1 className="font-primary my-3 font-medium">{event.title}</h1>
-      <p>{event.description}</p>
+      <p className="line-clamp-2">{event.description}</p>
       <div className="flex flex-row items-center justify-between">
-      <Link
-        to={event.social}
-        aria-label={event.title}
+      <div
         className="my-4 w-[40px] aspect-square rounded-full border border-primary flex items-center justify-center hite transition"
       >
         <Icon size={18} className="text-primary" />
-      </Link>
+      </div>
       {event.date && <p className="">{formatDate(event.date)}</p>}
       </div>
     

@@ -1,16 +1,35 @@
 import { FaCircleCheck } from "react-icons/fa6";
 import MembershipForm from "../components/MembershipForm";
 import Testimonials from "../components/Testimonials";
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FaStopCircle } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import { MdOutlineArrowRightAlt } from "react-icons/md";
+import { getTeamPhoto } from "../apis/homepage";
+
+
 const Join = () => {
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
+  const [joinPhoto, setjoinPhoto] = useState<string>("");
+  const formRef = useRef<HTMLDivElement | null>(null);
+
+
+  const scrollToForm = () => {
+    formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   const toggleAccordion = (index: number) => {
     setOpenAccordion(openAccordion === index ? null : index);
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const joinPhoto  = await getTeamPhoto();
+
+      setjoinPhoto(joinPhoto[0].image);
+    };
+
+    fetchData();
+  }, []);
 
   const accordionItems = [
     {
@@ -54,7 +73,11 @@ const Join = () => {
 
   return <div className="w-full mx-auto pb-[30vh]">
     <div className="mx-auto lg:min-h-[90vh] w-[90%] px-[5%] grid grid-cols-1 lg:grid-cols-[50%_50%] items-center ">
-      <div className="w-full my-10 lg:my-0  aspect-square lg:aspect-[1/0.8] lg:-ml-[10%] rounded-xl relative pb-16 bg-black">
+      <div className="w-full my-10 lg:my-0  aspect-square lg:aspect-[1/0.8] lg:-ml-[10%] rounded-xl relative pb-16">
+      <img 
+          src={joinPhoto} 
+          className="w-full h-full object-cover rounded-xl transition-transform duration-300 ease-in-out group-hover:scale-110" 
+          alt="" />
       </div>
 
       <div className="flex flex-col justify-center">
@@ -71,12 +94,14 @@ const Join = () => {
           and become part of a supportive community committed to excellence in finance.
         </p>
 
-        <Link to="/membership">
-          <div className="mt-10 w-fit rounded-4xl bg-primary text-white px-8 py-3 flex flex-row items-center gap-4 cursor-pointer transition-all ease-in-out hover:translate-x-2">
+    
+          <button
+            onClick={scrollToForm}
+           className="mt-10 w-fit rounded-4xl bg-primary text-white px-8 py-3 flex flex-row items-center gap-4 cursor-pointer transition-all ease-in-out hover:translate-x-2">
             Apply Now
             <MdOutlineArrowRightAlt />
-          </div>
-        </Link>
+          </button>
+
 
       </div>
     </div>
@@ -182,6 +207,7 @@ const Join = () => {
 
 
     </div>
+    <div ref={formRef} className="pb-20"></div>
     <MembershipForm />
     <Testimonials />
   </div>;

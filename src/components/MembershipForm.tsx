@@ -1,14 +1,29 @@
 
 import { Link } from 'react-router-dom'
-import head from '../assets/images/CTA.png'
 import { MdOutlineArrowRightAlt } from 'react-icons/md'
+import { useEffect, useState } from 'react';
+import { getCtaPhoto } from '../apis/homepage';
 
 const MembershipForm = () => {
+    const [ctaPhoto, setCtaPhoto] = useState<string>("");
+
+    
+    useEffect(() => {
+        const fetchData = async () => {
+          const ctaPhoto = await getCtaPhoto();
+
+          console.log(ctaPhoto);
+          setCtaPhoto(ctaPhoto[0]?.image);
+        };
+    
+        fetchData();
+      }, []);
+
     return (
         <div className=" w-full lg:w-[80%] lg:h-[50vh] mx-auto rounded-xl p-10 my-[15vh] grid grid-cols-1 lg:grid-cols-[30%_70%] items-center">
             <div className="relative mb-10 lg:mb-0 w-full aspect-square bg-primary rounded-2xl overflow-visible flex justify-center">
                 <img
-                    src={head}
+                    src={ctaPhoto}
                     alt="member of blackleaf"
                     className="absolute bottom-0 h-[110%] w-auto object-cover object-bottom"
                 />

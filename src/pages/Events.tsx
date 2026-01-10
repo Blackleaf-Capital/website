@@ -2,103 +2,15 @@ import { MdChevronLeft, MdChevronRight, MdOutlineArrowRightAlt, MdFilterList, Md
 import { Link } from "react-router-dom";
 import EventCard from "../components/EventCard";
 import { useEffect, useMemo, useRef, useState } from "react";
-
-const eventsData = [
-  {
-    id: 1,
-    title: "Investment Fundamentals Workshop",
-    description: "Learn the basics of investment analysis, portfolio management, and risk assessment with industry professionals.",
-    image: "",
-    social: "web",
-    category: "workshop",
-    date: "2026-02-15"
-  },
-  {
-    id: 2,
-    title: "Networking Mixer: Toronto Chapter",
-    description: "Connect with fellow students, alumni, and industry professionals in an informal setting.",
-    image: "/api/placeholder/400/250",
-    social: "web",
-    category: "networking",
-    date: "2026-03-10"
-  },
-  {
-    id: 3,
-    title: "Annual Conference 2024",
-    description: "Join us for our flagship annual conference featuring keynote speakers and panel discussions.",
-    image: "/api/placeholder/400/250",
-    social: "web",
-    category: "conference",
-    date: "2024-11-20"
-  },
-  {
-    id: 4,
-    title: "Financial Modeling Workshop",
-    description: "Hands-on workshop covering advanced financial modeling techniques and best practices.",
-    image: "",
-    social: "web",
-    category: "workshop",
-    date: "2026-01-25"
-  },
-  {
-    id: 5,
-    title: "Alumni Networking Event",
-    description: "Connect with successful alumni working in top financial institutions.",
-    image: "/api/placeholder/400/250",
-    social: "webn",
-    category: "networking",
-    date: "2025-12-05"
-  },
-  {
-    id: 6,
-    title: "Guest Speaker: Private Equity Insights",
-    description: "Industry veteran shares insights on private equity trends and career opportunities.",
-    image: "/api/placeholder/400/250",
-    social: "web",
-    category: "conference",
-    date: "2026-04-18"
-  },
-  {
-    id: 7,
-    title: "Technical Analysis Workshop",
-    description: "Master chart patterns and technical indicators for better trading decisions.",
-    image: "/api/placeholder/400/250",
-    social: "web",
-    category: "workshop",
-    date: "2025-10-12"
-  },
-  {
-    id: 8,
-    title: "Industry Networking Night",
-    description: "Meet recruiters and professionals from leading investment firms.",
-    image: "/api/placeholder/400/250",
-    social: "web",
-    category: "networking",
-    date: "2026-05-22"
-  },
-  {
-    id: 9,
-    title: "Annual Conference 2023 Recap",
-    description: "Review highlights and key takeaways from last year's conference.",
-    image: "/api/placeholder/400/250",
-    social: "web",
-    category: "conference",
-    date: "2023-12-01"
-  }
-];
+import { getEvents } from "../apis/events";
 
 const Events = () => {
-  // const scrollToTop = () => {
-  //   window.scrollTo({
-  //     top: 0,
-  //     behavior: "smooth",
-  //   })
-  // }
-
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [timeFilter, setTimeFilter] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [eventData, setEventData] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [showFilters, setShowFilters] = useState(false);
   const filterRef = useRef<HTMLDivElement | null>(null);
@@ -117,8 +29,31 @@ const Events = () => {
     };
   }, []);
 
-  // Close filters when clicking outside
+  const scrollToTop = () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+    })
+}
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        const events = await getEvents();
+        setEventData(events || []);
+      } catch (error) {
+        console.error('Error fetching events:', error);
+        setEventData([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // Close filters when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target;
@@ -147,8 +82,35 @@ const Events = () => {
 
   const itemsPerPage = isMobile ? 3 : 6;
 
+  // Get upcoming event for hero section
+  const upcomingEvent = useMemo(() => {
+    if (isLoading || eventData.length === 0) return null;
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    // Get upcoming events
+    const upcoming = eventData
+      .filter(event => new Date(event.date) >= today)
+      .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
+    // Return first upcoming event, or latest past event if no upcoming
+    if (upcoming.length > 0) {
+      return upcoming[0];
+    } else {
+      // Get latest past event
+      const past = eventData
+        .filter(event => new Date(event.date) < today)
+        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      return past[0] || null;
+    }
+  }, [eventData, isLoading]);
+
   const filteredEvents = useMemo(() => {
-    let filtered = eventsData;
+    // Don't filter if still loading
+    if (isLoading) return [];
+
+    let filtered = eventData;
 
     // Filter by search query
     if (searchQuery.trim()) {
@@ -185,7 +147,7 @@ const Events = () => {
 
       return dateA.getTime() - dateB.getTime();
     });
-  }, [selectedFilter, timeFilter, searchQuery]);
+  }, [eventData, selectedFilter, timeFilter, searchQuery, isLoading]);
 
   const totalPages = Math.ceil(filteredEvents.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -231,22 +193,69 @@ const Events = () => {
     { id: "past", label: "Past Events" }
   ];
 
+  const formatDate = (
+    dateStr: string,
+    locale: string = 'en-US',
+    options?: Intl.DateTimeFormatOptions
+  ): string => {
+    if (!dateStr) return '';
+
+    const date = new Date(dateStr);
+
+    // Default options if none provided
+    const defaultOptions: Intl.DateTimeFormatOptions = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    };
+
+    return date.toLocaleDateString(locale, options || defaultOptions);
+  };
+
+  const isUpcoming = upcomingEvent && new Date(upcomingEvent.date) >= new Date(new Date().setHours(0, 0, 0, 0));
+
   return (
     <div className="w-[90%] mx-auto mb-[40vh]">
       <div className="mx-auto  lg:min-h-[90vh] w-full px-[5%] grid grid-cols-1 lg:grid-cols-[50%_50%] items-center">
-        <div className="w-full my-10 lg:my-0  aspect-square lg:aspect-[1/0.8] lg:-ml-[10%] rounded-xl relative pb-16 bg-black">
-        </div>
+        <div className="w-full my-10 lg:my-0  aspect-square lg:aspect-[1/0.8] lg:-ml-[10%] rounded-xl relative pb-16 flex justify-center items-center">
+          <img
+            src={upcomingEvent?.image}
+            className="w-full rounded-xl my-auto object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
+            alt={upcomingEvent?.title}
+          />        </div>
 
         <div className="flex flex-col justify-center">
-          <div className="w-fit rounded-4xl border border-primary px-6 py-2 mb-5 text-primary">Upcoming Event</div>
-          <h2 className="w-full lg:w-[90%] font-primary text-2xl uppercase my-2">Student-led Industry-Focused</h2>
-          <p className="text-[18px] w-full font-secondary lg:w-[80%]">Blackleaf is powered by a diverse cohort of students who bring academic rigor and analytical insight to our investment fund. Beyond the numbers, our leadership is dedicated to fostering an inclusive ecosystem where the next generation of Black financial professionals can thrive.</p>
-          <Link to="/team">
-            <div className='mt-10 w-fit rounded-4xl bg-primary text-white px-8 py-3 flex flex-row items-center gap-4 cursor-pointer transition-all ease-in-out hover:translate-x-2'>
-              Register Now
-              <MdOutlineArrowRightAlt />
+          {isLoading ? (
+            // Loading skeleton for hero section
+            <div className="animate-pulse">
+              <div className="w-32 h-8 bg-gray-200 rounded-4xl mb-5"></div>
+              <div className="h-8 bg-gray-200 rounded w-3/4 mb-2"></div>
+              <div className="h-4 bg-gray-200 rounded w-full mb-2"></div>
+              <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+              <div className="w-40 h-12 bg-gray-200 rounded-4xl mt-10"></div>
             </div>
-          </Link>
+          ) : upcomingEvent ? (
+            <>
+              <div className="w-fit rounded-4xl border border-primary px-6 py-2 mb-5 text-primary">
+                {isUpcoming ? 'Upcoming Event' : 'Latest Event'}
+              </div>
+              <h2 className="w-full lg:w-[90%] font-primary text-2xl uppercase my-2">{upcomingEvent.title}</h2>
+              <p className="text-[18px] w-full font-secondary lg:w-[80%]">{upcomingEvent.description}</p>
+              <p className="mt-2">{formatDate(upcomingEvent.date)}</p>
+              <Link to={`/events/${upcomingEvent?.registration_link}`}>
+                <div className='mt-10 w-fit rounded-4xl bg-primary text-white px-8 py-3 flex flex-row items-center gap-4 cursor-pointer transition-all ease-in-out hover:translate-x-2'>
+                  {isUpcoming ? 'Register Now' : 'View Details'}
+                  <MdOutlineArrowRightAlt />
+                </div>
+              </Link>
+            </>
+          ) : (
+            <>
+              <div className="w-fit rounded-4xl border border-primary px-6 py-2 mb-5 text-primary">Events</div>
+              <h2 className="w-full lg:w-[90%] font-primary text-2xl uppercase my-2">Student-led Industry-Focused</h2>
+              <p className="text-[18px] w-full font-secondary lg:w-[80%]">Blackleaf is powered by a diverse cohort of students who bring academic rigor and analytical insight to our investment fund. Beyond the numbers, our leadership is dedicated to fostering an inclusive ecosystem where the next generation of Black financial professionals can thrive.</p>
+            </>
+          )}
         </div>
       </div>
 
@@ -289,7 +298,7 @@ const Events = () => {
           </div>
           <div className="hidden lg:flex flex-row items-center gap-4">
             {/* Pagination */}
-            {filteredEvents.length > 0 && totalPages > 1 && (
+            {!isLoading && filteredEvents.length > 0 && totalPages > 1 && (
               <div className="flex justify-center items-center gap-2">
                 <button
                   onClick={() => handlePageChange(currentPage - 1)}
@@ -332,7 +341,7 @@ const Events = () => {
             )}
 
             {/* Results Counter */}
-            {filteredEvents.length > 0 && (
+            {!isLoading && filteredEvents.length > 0 && (
               <div className="text-center text-gray-600">
                 Showing {startIndex + 1}-{Math.min(endIndex, filteredEvents.length)} of {filteredEvents.length} events
               </div>
@@ -394,15 +403,28 @@ const Events = () => {
 
       {/* Events Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-        {currentEvents.map((event) => (
-          <Link key={event.id} to={`/events/${event.id}`}>
-          <EventCard event={event} />
-        </Link>
-        ))}
+        {isLoading ? (
+          // Loading skeleton
+          [...Array(6)].map((_, index) => (
+            <div key={index} className="animate-pulse">
+              <div className="bg-gray-200 rounded-lg h-64 mb-4"></div>
+              <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+              <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+            </div>
+          ))
+        ) : (
+          currentEvents.map((event) => (
+            <Link 
+            onClick={scrollToTop}
+            key={event.id} to={`/events/${event.title}`}>
+              <EventCard event={event} />
+            </Link>
+          ))
+        )}
       </div>
 
       {/* No Results Message */}
-      {filteredEvents.length === 0 && (
+      {!isLoading && filteredEvents.length === 0 && (
         <div className="text-center py-12">
           <p className="text-gray-500 text-lg">
             {searchQuery ? `No events found for "${searchQuery}"` : 'No events found for this category.'}
@@ -419,7 +441,7 @@ const Events = () => {
       )}
 
       {/* Pagination */}
-      {filteredEvents.length > 0 && totalPages > 1 && (
+      {!isLoading && filteredEvents.length > 0 && totalPages > 1 && (
         <div className="flex justify-center items-center gap-2 mt-8">
           <button
             onClick={() => handlePageChange(currentPage - 1)}
@@ -462,7 +484,7 @@ const Events = () => {
       )}
 
       {/* Results Counter */}
-      {filteredEvents.length > 0 && (
+      {!isLoading && filteredEvents.length > 0 && (
         <div className="text-center mt-4 text-gray-600">
           Showing {startIndex + 1}-{Math.min(endIndex, filteredEvents.length)} of {filteredEvents.length} events
         </div>
