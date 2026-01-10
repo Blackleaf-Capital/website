@@ -2,7 +2,11 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="refresh" content="0; url=/" />
+    <script>
+      // Store the path and redirect to index.html
+      sessionStorage.setItem('redirectPath', window.location.pathname + window.location.search);
+      window.location.replace('/website/');
+    </script>
   </head>
   <body></body>
 </html>

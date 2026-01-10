@@ -121,10 +121,10 @@ const Footer = () => {
                                         <Link to="/#">Membership Form</Link>
                                     </li>
                                     <li className="cursor-pointer text-white/80 hover:text-white transition-all">
-                                        <Link to="/events">Upcoming Events</Link>
+                                        <Link to="/#">FAQs</Link>
                                     </li>
                                     <li className="cursor-pointer text-white/80 hover:text-white transition-all">
-                                        <Link to="/events">Gallery</Link>
+                                        <Link to="/#"></Link>
                                     </li>
                                 </ul>
                             </div>
