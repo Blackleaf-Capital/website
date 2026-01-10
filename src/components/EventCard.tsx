@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom"
 import { FaInstagram} from "react-icons/fa6"
 import type { IconType } from "react-icons"
 import { TiSocialLinkedin } from "react-icons/ti"
