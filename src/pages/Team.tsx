@@ -1,5 +1,4 @@
 import { MdOutlineArrowRightAlt, MdChevronLeft, MdChevronRight, MdFilterList, MdSearch, MdClose } from "react-icons/md";
-import { Link } from "react-router-dom";
 import { FaLinkedinIn } from "react-icons/fa6";
 import { useState, useEffect, useMemo, useRef } from "react";
 import { getExecMembers, getMembers, getPastExecs } from "../apis/members";

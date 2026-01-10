@@ -2,8 +2,6 @@ import { FaArrowRightLong, FaLinkedinIn } from "react-icons/fa6"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
-import head from '../assets/images/CTA.png'
-import head2 from '../assets/images/cta2.png'
 
 
 // Import Swiper styles
