@@ -11,12 +11,24 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from "react-router-dom";
 import { MdOutlineArrowRightAlt } from "react-icons/md";
+import { getExecMembers } from "../apis/members";
 
 const Team = () => {
+    const [executiveTeam, setExecutiveMembers] = useState<any[]>([]);
     const swiperRef = useRef<SwiperType | null>(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+          const members = await getExecMembers();
+          console.log(members);
+          setExecutiveMembers(members);
+        };
+    
+        fetchData();
+      }, []);
 
     // Function to scroll to top smoothly
     const scrollToTop = () => {
@@ -27,56 +39,7 @@ const Team = () => {
     };
 
     // Team members array
-    const teamMembers = [
-        {
-            id: 1,
-            name: "John Doe",
-            position: "President & CEO",
-            university: "University of Toronto",
-            linkedin: "https://linkedin.com/in/johndoe",
-            image: head
-        },
-        {
-            id: 2,
-            name: "Jane Smith",
-            position: "VP Operations",
-            university: "McGill University",
-            linkedin: "https://linkedin.com/in/janesmith",
-            image: head2
-        },
-        {
-            id: 3,
-            name: "Michael Brown",
-            position: "VP Finance",
-            university: "UBC",
-            linkedin: "https://linkedin.com/in/michaelbrown",
-            image: head
-        },
-        {
-            id: 4,
-            name: "Sarah Johnson",
-            position: "Director of Events",
-            university: "York University",
-            linkedin: "https://linkedin.com/in/sarahjohnson",
-            image: head2
-        },
-        {
-            id: 5,
-            name: "David Lee",
-            position: "Marketing Lead",
-            university: "Western University",
-            linkedin: "https://linkedin.com/in/davidlee",
-            image: head
-        },
-        {
-            id: 6,
-            name: "Emily Chen",
-            position: "Tech Lead",
-            university: "University of Waterloo",
-            linkedin: "https://linkedin.com/in/emilychen",
-            image: head2
-        }
-    ];
+
 
     return (
         <div className="w-[90%] mx-auto lg:py-[10vh] lg:w-full lg:my-[10vh] px-[5%] grid grid-cols-1 lg:grid-cols-[60%_40%] items-center">
@@ -127,13 +90,13 @@ const Team = () => {
                         }
                     }}
                 >
-                    {teamMembers.map((member) => (
+                    {executiveTeam && executiveTeam.map((member) => (
                         <SwiperSlide key={member.id}>
                             <div className="w-full h-80 rounded-2xl flex items-end">
                                 <div className="relative h-[80%] lg:h-[80%] w-full bg-primary rounded-2xl overflow-visible flex justify-center">
                                     <img
-                                        src={member.image}
-                                        alt={`${member.name} - ${member.position}`}
+                                        src={member.Image}
+                                        alt={`${member.First_Name} - ${member.Position}`}
                                         className="absolute bottom-0 h-[120%] w-auto object-cover object-bottom"
                                     />
 
@@ -143,14 +106,14 @@ const Team = () => {
 
                                             <div className="flex items-center justify-between">
                                                 <div>
-                                                    <h3 className="font-primary text-lg font-semibold">{member.name}</h3>
-                                                    <p className="font-secondary text-sm text-white/90">{member.position}</p>
+                                                    <h3 className="font-primary text-lg font-semibold">{member.First_Name + ' ' + member.Last_Name}</h3>
+                                                    <p className="font-secondary text-sm text-white/90">{member.Position}</p>
                                                 </div>
                                                 <a
-                                                    href={member.linkedin}
+                                                    href={member.LinkedIn}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    aria-label={`View ${member.name}'s LinkedIn profile`}
+                                                    aria-label={`View ${member.First_Name}'s LinkedIn profile`}
                                                     className="bg-white/20 hover:bg-white/30 p-2 rounded-full transition-all duration-200"
                                                 >
                                                     <FaLinkedinIn className="text-white text-sm" />

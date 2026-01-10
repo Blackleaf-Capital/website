@@ -1,8 +1,12 @@
 import { MdOutlineArrowRightAlt } from "react-icons/md";
 import { Link } from "react-router-dom"
-import background from "../assets/images/network.jpeg"
+import {  getLandingPage } from "../apis/homepage"; // adjust path
+import { useEffect, useState } from "react";
+
 
 function LandingPage() {
+    const [landingPage, setLandingPage] = useState(null);
+    
     const scrollToTop = () => {
         window.scrollTo({
             top: 0,
@@ -10,15 +14,29 @@ function LandingPage() {
         });
     };
 
+    useEffect(() => {
+        const fetchData = async () => {
+          const landingPageImg = await getLandingPage();
+          setLandingPage(landingPageImg[0].image);
+        };
+    
+        fetchData();
+      }, []);
+    
+
     return (
         <div className="space-y-8  ">
             <div className='relative w-[90%] mt-[4vh] mx-auto h-[80vh] rounded-2xl flex flex-col items-center justify-center text-white text-2xl overflow-hidden'>
                 <div className="absolute inset-0">
+                    {landingPage ?
                     <img
-                        src={background}
+                        src={landingPage}
                         alt="CTA Background"
                         className="w-full h-full object-cover"
-                    />
+                    />:
+                    <div className="w-full h-full bg-gray-200 animate-pulse flex items-center justify-center">
+                    </div>
+                    }
                 </div>
                 <div className="absolute inset-0 bg-black/50"></div>
                 <div className="relative w-full h-full flex flex-col items-center justify-center">

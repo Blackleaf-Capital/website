@@ -1,5 +1,5 @@
 import Testimonial from "./Testimonial";
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { Swiper as SwiperType } from 'swiper';
 import { Pagination, Navigation } from 'swiper/modules';
@@ -9,33 +9,22 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { FaArrowRightLong } from "react-icons/fa6";
+import { getTestimonials } from "../apis/testimonials";
 
-const testimonials = [
-    {
-        name: "Jane Doe",
-        position: "Product Manager",
-        description:
-            "Working with this team was an absolute pleasure. Communication was clear and delivery was on point.",
-        linkedin: "https://www.linkedin.com/in/janedoe",
-    },
-    {
-        name: "John Smith",
-        position: "Software Engineer",
-        description:
-            "Great attention to detail and very reliable. I’d definitely recommend them.",
-        linkedin: "https://www.linkedin.com/in/johnsmith",
-    },
-    {
-        name: "Mary Wanjiku",
-        position: "UX Designer",
-        description:
-            "They truly understand users and translate ideas into beautiful experiences.",
-        linkedin: "https://www.linkedin.com/in/marywanjiku",
-    },
-];
+
 
 const Testimonials = () => {
+    const [testimonials, setTestimonials] = useState<any[]>([]);
     const swiperRef3 = useRef<SwiperType | null>(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+          const comments = await getTestimonials();
+          setTestimonials(comments);
+        };
+    
+        fetchData();
+      }, []);
 
 
     return (
@@ -46,7 +35,7 @@ const Testimonials = () => {
                         key={index}
                         name={item.name}
                         position={item.position}
-                        description={item.description}
+                        description={item.comments}
                         linkedin={item.linkedin}
                     />
                 ))}
