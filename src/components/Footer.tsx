@@ -118,7 +118,7 @@ const Footer = () => {
                                 <div className="text-[20px] font-bold text-white mb-5">Resources</div>
                                 <ul className="flex flex-col gap-3">
                                     <li className="cursor-pointer text-white/80 hover:text-white transition-all">
-                                        <Link to="/faqs">FAQs</Link>
+                                        <Link to="/#">Membership Form</Link>
                                     </li>
                                     <li className="cursor-pointer text-white/80 hover:text-white transition-all">
                                         <Link to="/events">Upcoming Events</Link>

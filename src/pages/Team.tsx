@@ -354,7 +354,7 @@ const Team = () => {
           <div className="grid grid-cols-4 items-center py-3 font-semibold text-gray-700">
             <div>Year</div>
             <div>CEO</div>
-            <div>CTO</div>
+            <div>CIO</div>
             <div>COO</div>
           </div>
 
