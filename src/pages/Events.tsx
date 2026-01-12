@@ -215,7 +215,7 @@ const Events = () => {
   const isUpcoming = upcomingEvent && new Date(upcomingEvent.date) >= new Date(new Date().setHours(0, 0, 0, 0));
 
   return (
-    <div className="w-[90%] mx-auto mb-[40vh]">
+    <div className="w-[90%] mx-auto mb-[40vh] bg-white">
       <div className="mx-auto  lg:min-h-[90vh] w-full px-[5%] grid grid-cols-1 lg:grid-cols-[50%_50%] items-center">
         <div className="w-full my-10 lg:my-0  aspect-square lg:aspect-[1/0.8] lg:-ml-[10%] rounded-xl relative pb-16 flex justify-center items-center">
           <img
