@@ -114,7 +114,7 @@ const Team = () => {
 
 
   return (
-    <div className="pt-[5vh] lg:pt-0 pb-[20vh]">
+    <div className="pt-[5vh] lg:pt-0 pb-[20vh] bg-white">
       {/* Header Section */}
       <div className="mx-auto lg:min-h-[90vh] w-[80%] grid grid-cols-1 lg:grid-cols-[50%_50%] items-center gap-5">
         <div className="flex flex-col justify-center">
