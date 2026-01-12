@@ -438,7 +438,7 @@ const Team = () => {
                 </div>
 
                 <div className="flex justify-between">
-                  <span className="font-medium">CTO</span>
+                  <span className="font-medium">CIO</span>
                   <span>
                     {item.cto && (
                       <a
