@@ -4,13 +4,17 @@ import Testimonials from "../components/Testimonials";
 import { useEffect, useRef, useState } from 'react';
 import { FaStopCircle } from "react-icons/fa";
 import { MdOutlineArrowRightAlt } from "react-icons/md";
-import { getTeamPhoto } from "../apis/homepage";
+import { getJoinPhoto, } from "../apis/homepage";
+import LogoGrid from "../components/LogoGrid";
+import { getPlacement } from "../apis/sponsors";
 
 
 const Join = () => {
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
   const [joinPhoto, setjoinPhoto] = useState<string>("");
   const formRef = useRef<HTMLDivElement | null>(null);
+  const [placement, setPlacement] = useState<any[]>([]);
+
 
 
   const scrollToForm = () => {
@@ -23,9 +27,12 @@ const Join = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const joinPhoto  = await getTeamPhoto();
+      const placementImages = await getPlacement()
+      const joinPhoto = await getJoinPhoto();
 
       setjoinPhoto(joinPhoto[0].image);
+      setPlacement(placementImages);
+
     };
 
     fetchData();
@@ -54,6 +61,7 @@ const Join = () => {
     }
   ];
 
+
   const comparisonData = [
     {
       others: "Mostly theory-based learning models",
@@ -74,9 +82,9 @@ const Join = () => {
   return <div className="w-full mx-auto pb-[30vh]">
     <div className="mx-auto lg:min-h-[90vh] w-[90%] px-[5%] grid grid-cols-1 lg:grid-cols-[50%_50%] items-center ">
       <div className="w-full my-10 lg:my-0  aspect-square lg:aspect-[1/0.8] lg:-ml-[10%] rounded-xl relative pb-16">
-      <img 
-          src={joinPhoto} 
-          className="w-full h-full object-cover rounded-xl transition-transform duration-300 ease-in-out group-hover:scale-110" 
+        <img
+          src={joinPhoto}
+          className="w-full h-full object-cover rounded-xl transition-transform duration-300 ease-in-out group-hover:scale-110"
           alt="" />
       </div>
 
@@ -94,13 +102,13 @@ const Join = () => {
           and become part of a supportive community committed to excellence in finance.
         </p>
 
-    
-          <button
-            onClick={scrollToForm}
-           className="mt-10 w-fit rounded-4xl bg-primary text-white px-8 py-3 flex flex-row items-center gap-4 cursor-pointer transition-all ease-in-out hover:translate-x-2">
-            Apply Now
-            <MdOutlineArrowRightAlt />
-          </button>
+
+        <button
+          onClick={scrollToForm}
+          className="mt-10 w-fit rounded-4xl bg-primary text-white px-8 py-3 flex flex-row items-center gap-4 cursor-pointer transition-all ease-in-out hover:translate-x-2">
+          Apply Now
+          <MdOutlineArrowRightAlt />
+        </button>
 
 
       </div>
@@ -111,23 +119,23 @@ const Join = () => {
         <div className='w-full lg:w-[90%]'>
 
           <div className="hidden lg:flex flex-col w-full mx-auto">
-          <div className="w-fit rounded-4xl border border-primary px-6 py-2 mb-5 text-primary">Application Process</div>
-          <h2 className="w-[90%] lg:w-[75%] font-primary text-2xl lg:text-4xl my-2">
-            Join Blackleaf
-          </h2>
-          <p className="text-lg text-gray-600 font-secondary leading-relaxed mb-4">
-            Apply to become a member and gain hands-on experience, mentorship, and access to our exclusive programs. Learn about the process, expectations, and upcoming intake dates.
+            <div className="w-fit rounded-4xl border border-primary px-6 py-2 mb-5 text-primary">Application Process</div>
+            <h2 className="w-[90%] lg:w-[75%] font-primary text-2xl lg:text-4xl my-2">
+              Join Blackleaf
+            </h2>
+            <p className="text-lg text-gray-600 font-secondary leading-relaxed mb-4">
+              Apply to become a member and gain hands-on experience, mentorship, and access to our exclusive programs. Learn about the process, expectations, and upcoming intake dates.
 
-          </p>
+            </p>
           </div>
           <div className="lg:hidden w-[126%] -ml-[13%] mx-auto bg-primary py-5 px-[5%] mb-8 lg:mb-0">
-          <h2 className="ml-[5%] font-primary text-2xl lg:text-4xl my-2 text-white">
-            Join Blackleaf
-          </h2>
-          <p className="text-lg text-white/80 p-5 font-secondary leading-relaxed mb-4">
-            Apply to become a member and gain hands-on experience, mentorship, and access to our exclusive programs. Learn about the process, expectations, and upcoming intake dates.
+            <h2 className="ml-[5%] font-primary text-2xl lg:text-4xl my-2 text-white">
+              Join Blackleaf
+            </h2>
+            <p className="text-lg text-white/80 p-5 font-secondary leading-relaxed mb-4">
+              Apply to become a member and gain hands-on experience, mentorship, and access to our exclusive programs. Learn about the process, expectations, and upcoming intake dates.
 
-          </p>
+            </p>
           </div>
 
           <div className="max-w-4xl mx-auto">
@@ -210,6 +218,12 @@ const Join = () => {
     <div ref={formRef} className="pb-20"></div>
     <MembershipForm />
     <Testimonials />
+    <div className="w-[80%] mx-auto">
+      <LogoGrid
+        title="Past and Current Members Placement"
+        logos={placement}
+      />
+    </div>
   </div>;
 };
 

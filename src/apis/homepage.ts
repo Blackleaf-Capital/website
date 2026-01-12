@@ -92,6 +92,24 @@ export const getJoinPhoto = async () => {
     }
 };
 
+export const getSponsorPhoto = async () => {
+  try {
+    const { data, error } = await supabase
+      .from('images')  
+      .select('*')       
+      .eq('name', 'Sponsors') 
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    return data;
+  } catch (err: any) {
+    console.error('Error fetching homepage data:', err.message);
+    return [];
+  }
+};
+
 export const getCtaPhoto = async () => {
     try {
       const { data, error } = await supabase
