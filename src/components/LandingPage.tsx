@@ -26,7 +26,7 @@ function LandingPage() {
 
     return (
         <div className="space-y-8  ">
-            <div className='relative w-[90%] mt-[4vh] mx-auto h-[80vh] rounded-2xl flex flex-col items-center justify-center text-white text-2xl overflow-hidden'>
+            <div className='relative w-full lg:w-[90%] lg:mt-[4vh] mx-auto h-[90vh] lg:h-[80vh] lg:rounded-2xl flex flex-col items-center justify-center text-white text-2xl overflow-hidden'>
                 <div className="absolute inset-0">
                     {landingPage ?
                     <img

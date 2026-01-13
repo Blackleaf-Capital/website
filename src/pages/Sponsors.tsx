@@ -124,7 +124,7 @@ const Sponsors = () => {
 
       {/* Mission Statement */}
       <div className="w-[80%] mx-auto my-20 text-center">
-        <h3 className="font-primary text-xl uppercase mb-6">Our Mission</h3>
+        <h3 className="font-primary text-xl uppercase mb-6">What Drives Us</h3>
         <p className="text-lg font-secondary max-w-4xl mx-auto">
           Blackleaf is Canada's leading nationwide student-run nonprofit organization focused on educating
           Black students on the finance industry through professional development opportunities and practical
