@@ -219,7 +219,7 @@ const Team = () => {
                     {universities.map(u => <button key={u} onClick={() => handleUniversityFilterChange(u)} className={`px-6 py-2 rounded-full transition-all ${universityFilter === u ? 'bg-primary text-white' : 'border text-gray-700 hover:border border-gray-300'}`}>{u}</button>)}
                   </div>
                 </div>
-                <div className="flex flex-col lg:items-center gap-3 lg:gap-6">
+                <div className="flex flex-col lg:items-center gap-3">
                   <h3 className="text-sm font-semibold text-gray-700">Filter by Position</h3>
                   <div className="flex flex-col flex-wrap gap-2">
                     <button onClick={() => handlePositionFilterChange("all")} className={`px-6 py-2 rounded-full transition-all ${positionFilter === "all" ? 'bg-primary text-white' : 'border text-gray-700 hover:border border-gray-300'}`}>All Positions</button>
