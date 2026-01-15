@@ -12,6 +12,7 @@ import Join from './pages/Join';
 
 import './App.css';
 import EventDetails from './components/EventDetails';
+import ScrollToHash from './components/ScrollToHash';
 
 function AppContent() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -44,7 +45,8 @@ function AppContent() {
 
       {/* Main Content */}
       <main className="lg:pt-0 min-h-screen">
-        <Routes>
+      <ScrollToHash offset={150} />
+      <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/events" element={<Events />} />
           <Route path="/events/:eventId" element={<EventDetails />} />

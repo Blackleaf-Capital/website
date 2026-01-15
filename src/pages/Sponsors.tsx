@@ -4,13 +4,13 @@ import LogoGrid from "../components/LogoGrid";
 import { getJoinPhoto, getSponsorPhoto } from "../apis/homepage";
 import { getSponsors } from "../apis/sponsors";
 import { HiOutlineUserGroup } from "react-icons/hi2";
-import { getEvents } from "../apis/events";
+// import { getEvents } from "../apis/events";
 
 const Sponsors = () => {
   const [activeTab, setActiveTab] = useState<'benefits' | 'investment' | 'membership'>('benefits');
   const [sponPhoto, setSponsorPhoto] = useState<string>("");
   const [sponsors, setSponsors] = useState<any[]>([]);
-  const [events, setEvents] = useState<any[]>([]);
+  // const [events, setEvents] = useState<any[]>([]);
   const [joinPhoto, setjoinPhoto] = useState<string>("");
 
   useEffect(() => {
@@ -18,12 +18,12 @@ const Sponsors = () => {
       const sponsorPhoto = await getSponsorPhoto();
       const joinPhoto = await getJoinPhoto();
       const sponsorsImages = await getSponsors();
-      const eventsData = await getEvents();
+      // const eventsData = await getEvents();
 
       setSponsors(sponsorsImages);
       setSponsorPhoto(sponsorPhoto[0].image);
       setjoinPhoto(joinPhoto[0].image);
-      setEvents(eventsData || []);
+      // setEvents(eventsData || []);
     };
 
     fetchData();
@@ -103,7 +103,7 @@ const Sponsors = () => {
         <div className="flex flex-col justify-center">
           <div className="w-fit rounded-4xl border border-primary px-6 py-2 mb-5 text-primary">Partnership Opportunities</div>
           <h2 className="w-full lg:w-[90%] font-primary text-2xl lg:text-3xl uppercase my-2">Champion Inclusion in Finance</h2>
-          <p className="text-[18px] w-full font-secondary lg:w-[80%]">
+          <p className="text-lg font-secondary w-full lg:w-[80%]">
             Partner with Blackleaf Capital to support the next generation of Black leaders in finance.
             Our sponsorship opportunities provide meaningful engagement with top-tier talent while
             demonstrating your commitment to diversity and inclusion in the financial services industry.
@@ -124,7 +124,7 @@ const Sponsors = () => {
 
       {/* Mission Statement */}
       <div className="w-[80%] mx-auto my-20 text-center">
-        <h3 className="font-primary text-xl uppercase mb-6">What Drives Us</h3>
+        <h3 className="font-primary text-xl uppercase mb-6">Our Mission</h3>
         <p className="text-lg font-secondary max-w-4xl mx-auto">
           Blackleaf is Canada's leading nationwide student-run nonprofit organization focused on educating
           Black students on the finance industry through professional development opportunities and practical
@@ -184,7 +184,7 @@ const Sponsors = () => {
               <div className="text-center">
                 <div className="text-6xl font-bold text-primary mb-4">1</div>
                 <h3 className="font-primary text-xl mb-4">Champion Inclusion in the Finance Industry</h3>
-                <p className="font-secondary">
+                <p className="text-lg font-secondary">
                   By supporting Blackleaf, your firm demonstrates a clear commitment to building a more
                   inclusive industry. Sponsorship provides visibility as a leader in advancing equity
                   and opportunity, while also fostering a workplace culture that values diversity,
@@ -194,7 +194,7 @@ const Sponsors = () => {
               <div className="text-center">
                 <div className="text-6xl font-bold text-primary mb-4">2</div>
                 <h3 className="font-primary text-xl mb-4">Direct Access to a Network of Black Talent</h3>
-                <p className="font-secondary">
+                <p className="text-lg font-secondary">
                   Blackleaf connects sponsors to a highly skilled pool of students from leading Canadian
                   universities. This partnership serves as a centralized platform to engage with motivated
                   Black students who are actively preparing for careers in business and finance, helping
@@ -204,7 +204,7 @@ const Sponsors = () => {
               <div className="text-center">
                 <div className="text-6xl font-bold text-primary mb-4">3</div>
                 <h3 className="font-primary text-xl mb-4">Develop the Next Generation of Black Leaders</h3>
-                <p className="font-secondary">
+                <p className="text-lg font-secondary">
                   Through the Blackleaf Educational Program, sponsors play a direct role in equipping
                   students with the technical skills, mentorship, and industry insights needed to thrive.
                   Your support ensures a strong and sustainable pipeline of Black professionals who are
@@ -230,13 +230,13 @@ const Sponsors = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
               <div>
                 <h3 className="font-primary text-xl mb-6">Practical Investment Experience</h3>
-                <p className="font-secondary mb-4">
+                <p className="text-lg font-secondary mb-4">
                   Blackleaf Capital operates a virtual long-only public equity investment portfolio with
                   the purpose of educating students through practical and real-world experience. By
                   developing unique investment ideas, students can iteratively hone their abilities to
                   build and apply investment theses to real equity securities.
                 </p>
-                <p className="font-secondary">
+                <p className="text-lg font-secondary">
                   Members gain exposure to the full investment cycle, including researching industries,
                   valuing companies, and pitching ideas, while developing soft skills that prepare them
                   for future careers in finance, consulting, and other competitive industries.
@@ -244,13 +244,13 @@ const Sponsors = () => {
               </div>
               <div>
                 <h3 className="font-primary text-xl mb-6">Investment Philosophy</h3>
-                <p className="font-secondary mb-4">
+                <p className="text-lg font-secondary mb-4">
                   The primary investment philosophy is a long-term value investing approach. Students
                   will be expected to conduct in-depth analysis of securities with the intention of
                   identifying companies that are mispriced and undervalued in the market, providing
                   a substantial margin of safety.
                 </p>
-                <p className="font-secondary">
+                <p className="text-lg font-secondary">
                   The principal focus of investment opportunities is "great businesses at undervalued prices",
                   ensuring the portfolio only consists of high-quality assets. In order to maintain a
                   diversified basket of assets, no position will make up more than 7% of the fund.
@@ -268,7 +268,7 @@ const Sponsors = () => {
                   </div>
                 ))}
               </div>
-              <p className="text-center font-secondary mt-6 max-w-4xl mx-auto">
+              <p className="text-center text-lg font-secondary mt-6 max-w-4xl mx-auto">
                 Analysts will be assigned to one of these six groups each year based on their experience
                 and expertise, and each group will be expected to generate two investment opportunities
                 annually. This allows analysts to develop a level of expertise within their respective
@@ -350,7 +350,7 @@ const Sponsors = () => {
                       </div>
                       <div>
                         <h4 className="font-primary text-lg mb-2">{operation.title}</h4>
-                        <p className="font-secondary">{operation.description}</p>
+                        <p className="text-lg font-secondary">{operation.description}</p>
                       </div>
                     </div>
                   </div>
@@ -379,7 +379,7 @@ const Sponsors = () => {
                   <HiOutlineUserGroup className="text-4xl text-primary" />
                 </div>
                 <h3 className="font-primary text-xl mb-4">Networking Events</h3>
-                <p className="font-secondary">
+                <p className="text-lg font-secondary">
                   Join our networking events with our sponsors to get an insight into the financial
                   service industry
                 </p>
@@ -389,7 +389,7 @@ const Sponsors = () => {
                   <MdOutlineLibraryBooks className="text-4xl text-primary" />
                 </div>
                 <h3 className="font-primary text-xl mb-4">Resources</h3>
-                <p className="font-secondary">
+                <p className="text-lg font-secondary">
                   We offer a variety of resources to help with recruiting and understanding your
                   financial journey created by our execs
                 </p>
@@ -399,14 +399,14 @@ const Sponsors = () => {
                   <MdOutlineGroups className="text-4xl text-primary" />
                 </div>
                 <h3 className="font-primary text-xl mb-4">Mentorship Program</h3>
-                <p className="font-secondary">
+                <p className="text-lg font-secondary">
                   Offering 1 on 1 mentorship opportunities with members with an experience in finance
                 </p>
               </div>
             </div>
 
             {/* Sample Events */}
-            <div className="mb-16">
+            {/* <div className="mb-16">
               <h3 className="font-primary text-xl text-center mb-8">Membership Events</h3>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {events.slice(0, 2).map((event, index) => (
@@ -419,7 +419,7 @@ const Sponsors = () => {
                       />
                     </div>
                     <h4 className="font-primary my-3 font-medium">{event.title}</h4>
-                    <p className="font-secondary line-clamp-2">{event.description}</p>
+                    <p className="text-lg font-secondary line-clamp-2">{event.description}</p>
                     <div className="flex flex-row items-center justify-between">
                       <div className="my-4 w-[40px] aspect-square rounded-full border border-primary flex items-center justify-center transition">
                         <MdOutlineArrowRightAlt size={18} className="text-primary" />
@@ -437,7 +437,7 @@ const Sponsors = () => {
                   </div>
                 ))}
               </div>
-            </div>
+            </div> */}
           </div>
         )}
       </div>
@@ -479,25 +479,25 @@ const Sponsors = () => {
             as a corporate sponsor for the upcoming year. As we enter our third year, we are proud to
             reflect on how far our organization has come and excited to share our vision for the future."
           </p>
-          <p className="font-secondary mb-6">
+          <p className="font-secondary text-lg mb-6">
             "From the start, Blackleaf set out to transform the finance industry by bridging the gap
             between potential and opportunity through equitable representation. That mission remains at
             our core, and in our third year we are equally focused on developing the remarkable talent
             within our own ranks."
           </p>
-          <p className="font-secondary mb-6">
+          <p className="text-lg font-secondary mb-6">
             "Our members have demonstrated outstanding drive and skill and we are committed to providing
             them with the resources, mentorship and real world experiences that will help them excel in
             the competitive world of finance. By nurturing this internal talent we ensure that Blackleaf
             is not only a gateway to the industry but also a proving ground for the next generation of
             financial leaders."
           </p>
-          <p className="font-secondary mb-6">
+          <p className="text-lg font-secondary mb-6">
             "As we look ahead we invite you to join us in supporting this mission. Together we can provide
             Blackleaf's talented members with the opportunities and guidance they need to redefine what
             leadership in finance looks like."
           </p>
-          <p className="font-secondary font-semibold">
+          <p className="text-lg font-secondary font-semibold">
             Sincerely,<br />
             The Blackleaf Capital 2025-2026 Executive Team
           </p>

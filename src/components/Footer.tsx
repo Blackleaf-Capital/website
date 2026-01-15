@@ -118,10 +118,10 @@ const Footer = () => {
                                 <div className="text-[20px] font-bold text-white mb-5">Resources</div>
                                 <ul className="flex flex-col gap-3">
                                     <li className="cursor-pointer text-white/80 hover:text-white transition-all">
-                                        <Link to="/#">Membership Form</Link>
+                                        <Link target="_blank" to="https://docs.google.com/forms/d/e/1FAIpQLSezerYqiRGItQQFvCiun6YCn0FirHTqUoMN8qJS2_qeph04Tg/viewform">Membership Form</Link>
                                     </li>
                                     <li className="cursor-pointer text-white/80 hover:text-white transition-all">
-                                        <Link to="/#">FAQs</Link>
+                                        <Link to="/team#pastexec">Past Executives</Link>
                                     </li>
                                     <li className="cursor-pointer text-white/80 hover:text-white transition-all">
                                         <Link to="/#"></Link>
@@ -134,9 +134,9 @@ const Footer = () => {
                                     <li className="cursor-pointer text-white/80 hover:text-white transition-all">
                                         <Link to="/sponsors" onClick={scrollToTop}>Sponsors & Partners</Link>
                                     </li>
-                                    <li className="cursor-pointer text-white/80 hover:text-white transition-all">
-                                    <Link to="/team" onClick={scrollToTop}>Alumini</Link>
-                                    </li>
+                                    {/* <li className="cursor-pointer text-white/80 hover:text-white transition-all">
+                                        <Link to="/team" onClick={scrollToTop}>Alumini</Link>
+                                    </li> */}
                                     <li className="cursor-pointer text-white/80 hover:text-white transition-all">
                                         <Link to="/join" onClick={scrollToTop}>Join Us</Link>
                                     </li>

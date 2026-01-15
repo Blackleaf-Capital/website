@@ -1,16 +1,27 @@
-import { Link } from 'react-router-dom'
-import { MdOutlineArrowRightAlt } from 'react-icons/md'
 import { useEffect, useState } from 'react';
-import { getGroupPhoto } from '../apis/homepage';
+import LogoMarquee from './LogoMarquee';
+import { getSponsors } from '../apis/sponsors';
+import { getNetworkCounts, type NetworkCounts } from '../apis/counts';
 
 const Impact = () => {
-    const [groupPhoto, setGroupPhoto] = useState(null);
-
+    const [sponsors, setSponsors] = useState<any[]>([]);
+    const [counts, setCounts] = useState<NetworkCounts>({
+        totalMembers: 0,
+        corporatePartners: 0,
+        universities: 0,
+        events: 0,
+        placements: 0
+    });
 
     useEffect(() => {
         const fetchData = async () => {
-            const groupPhotoImg = await getGroupPhoto();
-            setGroupPhoto(groupPhotoImg[0].image);
+            const [sponsorsImages, networkCounts] = await Promise.all([
+                getSponsors(),
+                getNetworkCounts()
+            ]);
+            
+            setSponsors(sponsorsImages);
+            setCounts(networkCounts);
         };
 
         fetchData();
@@ -18,54 +29,51 @@ const Impact = () => {
 
     return (
         <div>
-            <div className="w-full bg-primary py-20 px-[10%] lg:px-[5%] grid grid-cols-1 lg:grid-cols-2 text-white gap-5 lg:gap-0 relative">
-                <div>
+            <div className='w-full bg-primary py-20 px-[10%] lg:px-[5%]'>
+                <div className="grid grid-cols-1 lg:grid-cols-2 text-white gap-8 lg:gap-12 relative items-center">
+                    <div>
                     <div className="w-fit rounded-4xl border border-white px-6 py-2 mb-5 text-white">Our Network</div>
-                    <h2 className="w-full lg:w-[75%] font-heading text-2xl lg:text-4xl uppercase my-2">
-                        A Canada-Wide Network of Excellence
-                    </h2>
-                    <Link
-                        to="/join"
-                        aria-label='join team'
-                        className="text-[18px] cursor-pointer underline text-white">
-                        Join Team
-                    </Link>
-                </div>
-                <div className="lg:relative">
-                    <p className="text-[18px] mb-8 lg:mb-0">Founded in 2023, our strength lies in diversity. Blackleaf Capital unite ambitious students from leading universities across Canada. From coast to coast, with over X members to date, our members form a powerful national network, bringing diverse perspectives to our collaborative projects and professional settings.</p>
 
-                    <div className="lg:hidden w-full h-[250px] overflow-hidden">
-                       {groupPhoto &&
-                        <img
-                            src={groupPhoto}
-                            alt="Blackleaf group picture"
-                            className="w-full h-full object-cover"
-                        />}
+                        <h2 className="w-full font-heading text-2xl lg:text-4xl uppercase my-2">
+                            A Canada-Wide Network of Excellence
+                        </h2>
+                       
                     </div>
-
-                    <div className="hidden lg:block lg:absolute lg:-bottom-[150%] w-full lg:w-[80%] h-[40vh] overflow-hidden">
-                       { groupPhoto &&
-                        <img
-                            src={groupPhoto}
-                            alt="Blackleaf group picture"
-                            className="w-full h-full object-cover"
-                        />}
+                    <div className="flex flex-col justify-center">
+                        {/* <div className="w-[80%] mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+                            <div className="text-center lg:text-left">
+                                <div className="text-4xl lg:text-5xl font-bold text-white mb-2">{counts.corporatePartners}+</div>
+                                <p className="text-lg text-white/90">Corporate Partners</p>
+                            </div>
+                            <div className="text-center lg:text-left">
+                                <div className="text-4xl lg:text-5xl font-bold text-white mb-2">{counts.totalMembers}+</div>
+                                <p className="text-lg text-white/90">Student Members</p>
+                            </div>
+                            <div className="text-center lg:text-left">
+                                <div className="text-4xl lg:text-5xl font-bold text-white mb-2">{counts.universities}+</div>
+                                <p className="text-lg text-white/90">Universities</p>
+                            </div>
+                        </div> */}
+                         <p className="text-[18px] my-7">
+                            Founded in 2023, our strength lies in diversity. Blackleaf Capital unites ambitious students from leading universities across Canada. From coast to coast, with over {counts.totalMembers}+ members to date, our members form a powerful national network, bringing diverse perspectives to our collaborative projects and professional settings.
+                        </p>
+                        <p className="text-[18px]">
+                            Our network's strength is amplified by strategic partnerships with Canada's leading financial institutions. These industry leaders provide mentorship, resources, and real-world opportunities that bridge the gap between academic learning and professional excellence.
+                        </p>
                     </div>
                 </div>
             </div>
-            <div className="w-full px-[calc(5%+24px)]  md:px-[5%] py-[10vh] lg:py-[20vh] bg-black ">
-                <Link
-                    to="/sponsors"
-                    aria-label='sponsor and partners'
-                    className="text-[18px] cursor-pointer text-white flex flex-row items-center gap-2">
-                    Partner with Purpose
-                    <MdOutlineArrowRightAlt />
-                </Link>
-                <h2 className="text-white w-full lg:w-[45%] font-primary text-2xl my-4 lg:text-4xl uppercase">Talent Meets Opportunity</h2>
-                <p className="text-white w-full text-[18px] lg:w-[45%] font-secondary ">We work alongside industry partners to equip driven students with real-world exposure, practical skills, and meaningful professional connections. Through collaboration, mentorship, and hands-on experience, we create a pipeline of talent ready to lead and innovate.</p>
+
+            {/* Partners Section */}
+            <div className="w-full mx-auto bg-white">
+                <LogoMarquee
+                    logos={sponsors}
+                />
             </div>
+           
         </div>
     )
 }
 
 export default Impact
+

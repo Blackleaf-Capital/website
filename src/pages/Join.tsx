@@ -1,8 +1,5 @@
-import { FaCircleCheck } from "react-icons/fa6";
 import MembershipForm from "../components/MembershipForm";
-import Testimonials from "../components/Testimonials";
 import { useEffect, useRef, useState } from 'react';
-import { FaStopCircle } from "react-icons/fa";
 import { MdOutlineArrowRightAlt } from "react-icons/md";
 import { getJoinPhoto, } from "../apis/homepage";
 import LogoGrid from "../components/LogoGrid";
@@ -55,27 +52,17 @@ const Join = () => {
         "Our leadership team reviews applications on a rolling or cohort basis, depending on the intake period. Shortlisted candidates may be invited for a brief interview or follow-up conversation to assess alignment and commitment."
     },
     {
-      title: "Programs",
+      title: "Onboarding & Orientation",
       content:
         "Selected members are onboarded into structured programs covering investment analysis, industry research, and professional development. Members are guided through expectations, timelines, and available learning tracks."
+    },
+    {
+      title: "Active Membership",
+      content:
+        "Once onboarded, members actively participate in team meetings, complete research assignments, and contribute to investment discussions. Members also gain access to exclusive networking events, workshops, and mentorship opportunities throughout their journey with Blackleaf."
     }
   ];
 
-
-  const comparisonData = [
-    {
-      others: "Mostly theory-based learning models",
-      us: "Hands-on investment training approach",
-    },
-    {
-      others: "One-off workshops and unstructured events",
-      us: "Structured long-term development programs",
-    },
-    {
-      others: "Limited access to experienced mentors",
-      us: "Direct access to experienced mentors",
-    },
-  ];
 
 
 
@@ -115,101 +102,114 @@ const Join = () => {
     </div>
 
     <div className="w-[80%] mx-auto my-[8vh] lg:pt-0">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-0 mb-16">
-        <div className='w-full lg:w-[90%]'>
+      <div className="w-[50%]">
+        <div className="hidden lg:flex flex-col w-full mx-auto">
+          <div className="w-fit rounded-4xl border border-primary px-6 py-2 mb-5 text-primary">Application Process</div>
+          <h2 className="w-[90%] lg:w-[75%] font-primary text-2xl lg:text-4xl my-2">
+            Join Blackleaf
+          </h2>
+          <p className="text-lg text-gray-600 font-secondary leading-relaxed mb-4">
+            Apply to become a member and gain hands-on experience, mentorship, and access to our exclusive programs. Learn about the process, expectations, and upcoming intake dates.
 
-          <div className="hidden lg:flex flex-col w-full mx-auto">
-            <div className="w-fit rounded-4xl border border-primary px-6 py-2 mb-5 text-primary">Application Process</div>
-            <h2 className="w-[90%] lg:w-[75%] font-primary text-2xl lg:text-4xl my-2">
-              Join Blackleaf
-            </h2>
-            <p className="text-lg text-gray-600 font-secondary leading-relaxed mb-4">
-              Apply to become a member and gain hands-on experience, mentorship, and access to our exclusive programs. Learn about the process, expectations, and upcoming intake dates.
+          </p>
+        </div>
+      </div>
+      <div className="lg:hidden w-[126%] -ml-[13%] mx-auto bg-primary py-5 px-[5%] mb-8 lg:mb-0">
+        <h2 className="ml-[5%] font-primary text-2xl lg:text-4xl my-2 text-white">
+          Join Blackleaf
+        </h2>
+        <p className="text-lg text-white/80 p-5 font-secondary leading-relaxed mb-4">
+          Apply to become a member and gain hands-on experience, mentorship, and access to our exclusive programs. Learn about the process, expectations, and upcoming intake dates.
 
-            </p>
-          </div>
-          <div className="lg:hidden w-[126%] -ml-[13%] mx-auto bg-primary py-5 px-[5%] mb-8 lg:mb-0">
-            <h2 className="ml-[5%] font-primary text-2xl lg:text-4xl my-2 text-white">
-              Join Blackleaf
-            </h2>
-            <p className="text-lg text-white/80 p-5 font-secondary leading-relaxed mb-4">
-              Apply to become a member and gain hands-on experience, mentorship, and access to our exclusive programs. Learn about the process, expectations, and upcoming intake dates.
+        </p>
+      </div>
+      <div className="mb-16">
+        <div className='w-full'>
+          <div className="mx-auto">
+            <div className="space-y-4 grid grid-cols-1 lg:grid-cols-2 lg:gap-4">
 
-            </p>
-          </div>
+              {/* LEFT COLUMN → items 0,1,2 */}
+              <div className="space-y-4">
+                {accordionItems.slice(0, 3).map((item, index) => {
+                  const actualIndex = index; // 0,1,2
+                  return (
+                    <div key={actualIndex} className="border border-gray-200 rounded-lg overflow-hidden">
+                      <button
+                        onClick={() => toggleAccordion(actualIndex)}
+                        className="w-full px-6 py-4 text-left bg-white hover:bg-gray-50 flex justify-between items-center"
+                      >
+                        <span className="text-lg font-primary text-gray-900">{item.title}</span>
+                        <svg
+                          className={`w-5 h-5 text-primary transition-transform duration-200 ${openAccordion === index ? 'rotate-180' : ''
+                            }`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
 
-          <div className="max-w-4xl mx-auto">
-            <div className="space-y-4">
-              {accordionItems.map((item, index) => (
-                <div key={index} className="border border-gray-200 rounded-lg overflow-hidden">
-                  <button
-                    onClick={() => toggleAccordion(index)}
-                    aria-expanded={openAccordion === index}
-                    aria-controls={`accordion-content-${index}`}
-                    aria-label={`Toggle ${item.title} section`}
-                    className="w-full px-6 py-4 text-left bg-white hover:bg-gray-50 transition-colors duration-200 flex justify-between items-center"
-                  >
-                    <span className="text-lg font-primary text-gray-900">{item.title}</span>
-                    <svg
-                      className={`w-5 h-5 text-primary transition-transform duration-200 ${openAccordion === index ? 'rotate-180' : ''
-                        }`}
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                  {openAccordion === index && (
-                    <div
-                      id={`accordion-content-${index}`}
-                      className="px-6 py-4 bg-gray-50 border-t border-gray-200"
-                    >
-                      <p className="text-gray-700 font-secondary leading-relaxed">{item.content}
-
-
-                        {openAccordion == 1 && <span className="text-primary ml-3 underline cursor-pointer">Membership Form</span>}
-
-                      </p>
+                      {openAccordion === actualIndex && (
+                        <div className="px-6 py-4 bg-gray-50 border-t border-gray-200">
+                          <p className="text-gray-700 font-secondary">
+                            {item.content}
+                            {actualIndex === 1 && (
+                              <span
+                                onClick={scrollToForm}
+                                className="text-primary ml-3 underline cursor-pointer"
+                              >
+                                Membership Form
+                              </span>
+                            )}
+                          </p>
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
-              ))}
+                  );
+                })}
+              </div>
+
+              {/* RIGHT COLUMN → items 3,4 */}
+              <div className="space-y-4">
+                {accordionItems.slice(3).map((item, index) => {
+                  const actualIndex = index + 3; // shift index to 3,4
+                  return (
+                    <div key={actualIndex} className="border border-gray-200 rounded-lg overflow-hidden">
+                      <button
+                        onClick={() => toggleAccordion(actualIndex)}
+                        className="w-full px-6 py-4 text-left bg-white hover:bg-gray-50 flex justify-between items-center"
+                      >
+                        <span className="text-lg font-primary text-gray-900">{item.title}</span>
+                        <svg
+                          className={`w-5 h-5 text-primary transition-transform duration-200 ${openAccordion === index ? 'rotate-180' : ''
+                            }`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+
+                      {openAccordion === actualIndex && (
+                        <div className="px-6 py-4 bg-gray-50 border-t border-gray-200">
+                          <p className="text-gray-700 font-secondary">
+                            {item.content}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+
             </div>
+
           </div>
+
         </div>
-        <div className="grid grid-cols-2 gap-2 lg:gap-10 my-auto">
-          {/* Other Student Groups / Companies */}
-          <div className="w-full">
-            <div className="p-6 py-2 rounded-full bg-[#F6F6F6] text-gray-600 mb-5 inline-flex">Others</div>
-            <div className="space-y-6">
-              {comparisonData.map((item, index) => (
-                <div key={index} className="bg-[#F6F6F6] rounded-xl p-4 lg:p-10 text-gray-600 font-secondary">
-                  <FaStopCircle className="text-gray-300 mb-3" />
-                  <p>{item.others}</p>
-                </div>
-              ))}
-            </div>
-          </div>
 
-          {/* What We Do */}
-          <div className="w-full">
-            <div className="p-6 py-2 rounded-full bg-primary text-white mb-5 inline-flex">Us</div>
-
-            <div className="space-y-6">
-              {comparisonData.map((item, index) => (
-                <p
-                  key={index}
-                  className="bg-[#F6F6F6] rounded-xl p-4 lg:p-10 font-secondary text-primay font-medium"
-                >
-                  <FaCircleCheck className="text-primary mb-3" />
-
-                  {item.us}
-                </p>
-              ))}
-            </div>
-          </div>
-        </div>
 
       </div>
 
@@ -217,7 +217,6 @@ const Join = () => {
     </div>
     <div ref={formRef} className="pb-20"></div>
     <MembershipForm />
-    <Testimonials />
     <div className="w-[80%] mx-auto">
       <LogoGrid
         title="Past and Current Members Placement"
