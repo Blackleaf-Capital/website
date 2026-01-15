@@ -1,5 +1,5 @@
 interface LogoGridProps {
-  title: string;
+  title?: string;
   logos: Array<{
     name: string;
     logo?: string;

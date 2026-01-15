@@ -34,7 +34,8 @@ const MembershipForm = () => {
                 <p className="text-[18px] w-full font-secondary lg:w-[90%]">Blackleaf is open to driven black students and young professionals looking to build real-world investment skills. 
                 Members gain hands-on training, structured mentorship, and access to a collaborative community focused on long-term financial excellence.</p>
                 <Link
-                    to="/team">
+                    target="_blank" to="https://docs.google.com/forms/d/e/1FAIpQLSezerYqiRGItQQFvCiun6YCn0FirHTqUoMN8qJS2_qeph04Tg/viewform"
+                    >
                     <div className='mt-10 w-fit rounded-4xl bg-primary text-white px-8 py-3 flex flex-row items-center gap-4 cursor-pointer transition-all ease-in-out hover:translate-x-2'>Membership Form
                         <MdOutlineArrowRightAlt />
                     </div>
