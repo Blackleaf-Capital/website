@@ -46,25 +46,25 @@ const Team = () => {
   useEffect(() => {
     const fetchData = async () => {
       const members = await getExecMembers();
-  
+
       const sortedMembers = [...members].sort((a, b) => {
         const posA = a.Position?.toLowerCase() || "";
         const posB = b.Position?.toLowerCase() || "";
-  
+
         // Explicitly define 'pos' as a string to fix the TS7006 error
         const getWeight = (pos: string): number => {
           if (pos.includes("chief executive officer")) return 1;
           if (pos.includes("chief operating officer")) return 2;
           if (pos.includes("chief investment officer")) return 3;
-          return 4; 
+          return 4;
         };
-  
+
         return getWeight(posA) - getWeight(posB);
       });
-  
+
       setExecutiveMembers(sortedMembers);
     };
-  
+
     fetchData();
   }, []);
 
@@ -377,8 +377,8 @@ const Team = () => {
           <div className="grid grid-cols-4 items-center py-3 font-semibold text-gray-700">
             <div>Year</div>
             <div>CEO</div>
-            <div>CIO</div>
             <div>COO</div>
+            <div>CIO</div>
           </div>
 
           <div>
@@ -401,20 +401,6 @@ const Team = () => {
                     </a>
                   )}
                 </div>
-
-                <div>
-                  {item.cto && (
-                    <a
-                      href={item.cto_linkedin || "#"}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:underline text-black hover:text-primary"
-                    >
-                      {item.cto}
-                    </a>
-                  )}
-                </div>
-
                 <div>
                   {item.coo && (
                     <a
@@ -424,6 +410,18 @@ const Team = () => {
                       className="hover:underline text-black hover:text-primary"
                     >
                       {item.coo}
+                    </a>
+                  )}
+                </div>
+                <div>
+                  {item.cto && (
+                    <a
+                      href={item.cto_linkedin || "#"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline text-black hover:text-primary"
+                    >
+                      {item.cto}
                     </a>
                   )}
                 </div>
@@ -461,6 +459,22 @@ const Team = () => {
                 </div>
 
                 <div className="flex justify-between">
+                  <span className="font-medium">COO</span>
+                  <span>
+                    {item.coo && (
+                      <a
+                        href={item.coo_linkedin || "#"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:underline text-black hover:text-primary"
+                      >
+                        {item.coo}
+                      </a>
+                    )}
+                  </span>
+                </div>
+                
+                <div className="flex justify-between">
                   <span className="font-medium">CIO</span>
                   <span>
                     {item.cto && (
@@ -476,21 +490,7 @@ const Team = () => {
                   </span>
                 </div>
 
-                <div className="flex justify-between">
-                  <span className="font-medium">COO</span>
-                  <span>
-                    {item.coo && (
-                      <a
-                        href={item.coo_linkedin || "#"}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:underline text-black hover:text-primary"
-                      >
-                        {item.coo}
-                      </a>
-                    )}
-                  </span>
-                </div>
+               
               </div>
             </div>
           ))
