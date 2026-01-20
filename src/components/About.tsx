@@ -92,7 +92,7 @@ const About = () => {
           </div>
         </div>
         <div className="hidden w-[85%] mx-auto aspect-square rounded-xl items-center justify-center lg:grid grid-cols-2 gap-3">
-          <div className='grid grid-cols-1 -mt-[30px] gap-3'>
+          <div className='grid grid-cols-1 gap-3'>
             <Link onClick={scrollToTop} to={`/events/${eventPages[0]?.title}`}>
               <div className='w-full rounded-xl aspect-square bg-black overflow-hidden cursor-pointer relative group'>
                 <img
