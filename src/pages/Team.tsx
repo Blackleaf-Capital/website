@@ -30,7 +30,6 @@ const Team = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const execMembers = await getExecMembers();
       const membersData = await getMembers();
       const teamPhoto = await getTeamPhoto();
       const past = await getPastExecs();
@@ -39,9 +38,33 @@ const Team = () => {
       setMembers(membersData);
       setPastExecutives(past);
       setTeamPhoto(teamPhoto[0].image);
-      setExecutiveMembers(execMembers);
     };
 
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const members = await getExecMembers();
+  
+      const sortedMembers = [...members].sort((a, b) => {
+        const posA = a.Position?.toLowerCase() || "";
+        const posB = b.Position?.toLowerCase() || "";
+  
+        // Explicitly define 'pos' as a string to fix the TS7006 error
+        const getWeight = (pos: string): number => {
+          if (pos.includes("chief executive officer")) return 1;
+          if (pos.includes("chief operating officer")) return 2;
+          if (pos.includes("chief investment officer")) return 3;
+          return 4; 
+        };
+  
+        return getWeight(posA) - getWeight(posB);
+      });
+  
+      setExecutiveMembers(sortedMembers);
+    };
+  
     fetchData();
   }, []);
 
@@ -153,7 +176,7 @@ const Team = () => {
                     <p className="font-secondary text-sm text-white/90">{member.Position}</p>
                     <p className="font-secondary text-xs text-white/70">{member.School}</p>
                   </div>
-                  <a href={member.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`View ${member.First_Name}'s LinkedIn profile`} className="bg-white/20 hover:bg-white/30 p-2 rounded-full transition-all duration-200">
+                  <a href={member.LinkedIn} target="_blank" rel="noopener noreferrer" aria-label={`View ${member.First_Name}'s LinkedIn profile`} className="bg-white/20 hover:bg-white/30 p-2 rounded-full cursor-pointer transition-all duration-200">
                     <FaLinkedinIn className="text-white text-sm" />
                   </a>
                 </div>

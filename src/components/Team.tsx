@@ -21,21 +21,25 @@ const Team = () => {
   useEffect(() => {
     const fetchData = async () => {
       const members = await getExecMembers();
-
-      // Sort members to put CEO first
-      const sortedMembers = members.sort((a, b) => {
-        const positionA = a.Position?.toLowerCase() || "";
-        const positionB = b.Position?.toLowerCase() || "";
-
-        if (positionA.includes("chief executive officer")) return -1;
-        if (positionB.includes("chief executive officer")) return 1;
-
-        return 0;
+  
+      const sortedMembers = [...members].sort((a, b) => {
+        const posA = a.Position?.toLowerCase() || "";
+        const posB = b.Position?.toLowerCase() || "";
+  
+        // Explicitly define 'pos' as a string to fix the TS7006 error
+        const getWeight = (pos: string): number => {
+          if (pos.includes("chief executive officer")) return 1;
+          if (pos.includes("chief operating officer")) return 2;
+          if (pos.includes("chief investment officer")) return 3;
+          return 4; 
+        };
+  
+        return getWeight(posA) - getWeight(posB);
       });
-
+  
       setExecutiveMembers(sortedMembers);
     };
-
+  
     fetchData();
   }, []);
 

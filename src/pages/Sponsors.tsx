@@ -4,11 +4,13 @@ import LogoGrid from "../components/LogoGrid";
 import { getJoinPhoto, getSponsorPhoto } from "../apis/homepage";
 import { getSponsors } from "../apis/sponsors";
 import { HiOutlineUserGroup } from "react-icons/hi2";
+import { getExecMembers } from "../apis/members";
 // import { getEvents } from "../apis/events";
 
 const Sponsors = () => {
   const [activeTab, setActiveTab] = useState<'benefits' | 'investment' | 'membership'>('benefits');
   const [sponPhoto, setSponsorPhoto] = useState<string>("");
+  const [executiveTeam, setExecutiveMembers] = useState<any[]>([]);
   const [sponsors, setSponsors] = useState<any[]>([]);
   // const [events, setEvents] = useState<any[]>([]);
   const [joinPhoto, setjoinPhoto] = useState<string>("");
@@ -29,6 +31,30 @@ const Sponsors = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const members = await getExecMembers();
+
+      const sortedMembers = [...members].sort((a, b) => {
+        const posA = a.Position?.toLowerCase() || "";
+        const posB = b.Position?.toLowerCase() || "";
+
+        // Explicitly define 'pos' as a string to fix the TS7006 error
+        const getWeight = (pos: string): number => {
+          if (pos.includes("chief executive officer")) return 1;
+          if (pos.includes("chief operating officer")) return 2;
+          if (pos.includes("chief investment officer")) return 3;
+          return 4;
+        };
+
+        return getWeight(posA) - getWeight(posB);
+      });
+
+      setExecutiveMembers(sortedMembers);
+    };
+
+    fetchData();
+  }, []);
 
 
 
@@ -78,23 +104,6 @@ const Sponsors = () => {
   //   { count: "+", activity: "More" }
   // ];
 
-  const executiveTeam = [
-    {
-      name: "Ryan Maina",
-      position: "Chief Executive Officer",
-      image: "/team/ryan-maina.jpg"
-    },
-    {
-      name: "John Anazdo",
-      position: "Chief Investment Officer",
-      image: "/team/john-anazdo.jpg"
-    },
-    {
-      name: "Joyce Ndungu",
-      position: "Chief Operating Officer",
-      image: "/team/joyce-ndungu.jpg"
-    }
-  ];
 
   return (
     <div className="pt-[5vh] lg:pt-0 pb-[20vh]">
@@ -460,14 +469,15 @@ const Sponsors = () => {
           {executiveTeam.map((exec, index) => (
             <div key={index} className="relative mb-10 lg:mb-0 w-full aspect-square bg-primary rounded-2xl overflow-visible flex justify-center">
               <img
-                src={exec.image}
-                alt={`${exec.name} - ${exec.position}`}
+                src={exec.Image}
+                alt={`${exec.First_Name} - ${exec.Position}`}
                 className="absolute bottom-0 h-[110%] w-auto object-cover object-bottom"
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 rounded-b-2xl">
                 <div className="text-white w-[90%] mx-auto text-center">
-                  <h3 className="font-primary text-lg font-semibold">{exec.name}</h3>
-                  <p className="font-secondary text-sm text-white/90">{exec.position}</p>
+                  <h3 className="font-primary text-lg font-semibold">{exec.First_Name} {exec.Last_Name}
+                  </h3>
+                  <p className="font-secondary text-sm text-white/90">{exec.Position}</p>
                 </div>
               </div>
             </div>
