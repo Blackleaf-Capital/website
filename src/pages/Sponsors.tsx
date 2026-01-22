@@ -4,13 +4,13 @@ import LogoGrid from "../components/LogoGrid";
 import { getJoinPhoto, getSponsorPhoto } from "../apis/homepage";
 import { getSponsors } from "../apis/sponsors";
 import { HiOutlineUserGroup } from "react-icons/hi2";
-import { getExecMembers } from "../apis/members";
+// import { getExecMembers } from "../apis/members";
 // import { getEvents } from "../apis/events";
 
 const Sponsors = () => {
   const [activeTab, setActiveTab] = useState<'benefits' | 'investment' | 'membership'>('benefits');
   const [sponPhoto, setSponsorPhoto] = useState<string>("");
-  const [executiveTeam, setExecutiveMembers] = useState<any[]>([]);
+  // const [executiveTeam, setExecutiveMembers] = useState<any[]>([]);
   const [sponsors, setSponsors] = useState<any[]>([]);
   // const [events, setEvents] = useState<any[]>([]);
   const [joinPhoto, setjoinPhoto] = useState<string>("");
@@ -31,30 +31,30 @@ const Sponsors = () => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const members = await getExecMembers();
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const members = await getExecMembers();
 
-      const sortedMembers = [...members].sort((a, b) => {
-        const posA = a.Position?.toLowerCase() || "";
-        const posB = b.Position?.toLowerCase() || "";
+  //     const sortedMembers = [...members].sort((a, b) => {
+  //       const posA = a.Position?.toLowerCase() || "";
+  //       const posB = b.Position?.toLowerCase() || "";
 
-        // Explicitly define 'pos' as a string to fix the TS7006 error
-        const getWeight = (pos: string): number => {
-          if (pos.includes("chief executive officer")) return 1;
-          if (pos.includes("chief operating officer")) return 2;
-          if (pos.includes("chief investment officer")) return 3;
-          return 4;
-        };
+  //       // Explicitly define 'pos' as a string to fix the TS7006 error
+  //       const getWeight = (pos: string): number => {
+  //         if (pos.includes("chief executive officer")) return 1;
+  //         if (pos.includes("chief operating officer")) return 2;
+  //         if (pos.includes("chief investment officer")) return 3;
+  //         return 4;
+  //       };
 
-        return getWeight(posA) - getWeight(posB);
-      });
+  //       return getWeight(posA) - getWeight(posB);
+  //     });
 
-      setExecutiveMembers(sortedMembers);
-    };
+  //     setExecutiveMembers(sortedMembers);
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
 
 
@@ -465,24 +465,7 @@ const Sponsors = () => {
       {/* Executive Message */}
       <div className="w-[80%] mx-auto my-20 rounded-xl p-8 lg:p-12 ">
         <h2 className="font-primary text-2xl uppercase text-center mb-34">Executive Message</h2>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-28">
-          {executiveTeam.map((exec, index) => (
-            <div key={index} className="relative mb-10 lg:mb-0 w-full aspect-square bg-primary rounded-2xl overflow-visible flex justify-center">
-              <img
-                src={exec.Image}
-                alt={`${exec.First_Name} - ${exec.Position}`}
-                className="absolute bottom-0 h-[110%] w-auto object-cover object-bottom"
-              />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 rounded-b-2xl">
-                <div className="text-white w-[90%] mx-auto text-center">
-                  <h3 className="font-primary text-lg font-semibold">{exec.First_Name} {exec.Last_Name}
-                  </h3>
-                  <p className="font-secondary text-sm text-white/90">{exec.Position}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+       
         <div className="max-w-4xl mx-auto text-center">
           <p className="font-secondary text-lg mb-6">
             "On behalf of the Blackleaf Capital executive team we thank you for considering Blackleaf
@@ -514,7 +497,7 @@ const Sponsors = () => {
         </div>
       </div>
 
-      {/* Call to Action */}
+    {/* Call to Action */}
       <div className="w-[80%] mx-auto text-center">
         <h2 className="font-primary text-2xl uppercase mb-6">Ready to Partner With Us?</h2>
         <p className="text-lg font-secondary mb-8 max-w-2xl mx-auto">
