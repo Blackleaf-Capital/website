@@ -78,22 +78,22 @@ const Sponsors = () => {
     {
       icon: "💼",
       title: "Gain practical investing experience",
-      description: "by managing a long-only equities fund"
+      description: "By managing a long-only equities fund"
     },
     {
       icon: "🤝",
       title: "Meet and connect with business professionals",
-      description: "through network events"
+      description: "Through network events"
     },
     {
       icon: "🔍",
       title: "Prepare for the recruiting process",
-      description: "and gain resume feedback"
+      description: "And gain resume feedback"
     },
     {
       icon: "📚",
       title: "Learn invaluable information on financial markets",
-      description: "via Blackleaf's summer educational program"
+      description: "Via Blackleaf's summer educational program"
     }
   ];
 
@@ -221,6 +221,40 @@ const Sponsors = () => {
                 </p>
               </div>
             </div>
+
+            <div className="w-[80%] mx-auto my-20 rounded-xl p-8 lg:p-12 ">
+        <h2 className="font-primary text-2xl uppercase text-center mb-34">Executive Message</h2>
+       
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="font-secondary text-lg mb-6">
+            "On behalf of the Blackleaf Capital executive team we thank you for considering Blackleaf
+            as a corporate sponsor for the upcoming year. As we enter our third year, we are proud to
+            reflect on how far our organization has come and excited to share our vision for the future."
+          </p>
+          <p className="font-secondary text-lg mb-6">
+            "From the start, Blackleaf set out to transform the finance industry by bridging the gap
+            between potential and opportunity through equitable representation. That mission remains at
+            our core, and in our third year we are equally focused on developing the remarkable talent
+            within our own ranks."
+          </p>
+          <p className="text-lg font-secondary mb-6">
+            "Our members have demonstrated outstanding drive and skill and we are committed to providing
+            them with the resources, mentorship and real world experiences that will help them excel in
+            the competitive world of finance. By nurturing this internal talent we ensure that Blackleaf
+            is not only a gateway to the industry but also a proving ground for the next generation of
+            financial leaders."
+          </p>
+          <p className="text-lg font-secondary mb-6">
+            "As we look ahead we invite you to join us in supporting this mission. Together we can provide
+            Blackleaf's talented members with the opportunities and guidance they need to redefine what
+            leadership in finance looks like."
+          </p>
+          <p className="text-lg font-secondary font-semibold">
+            Sincerely,<br />
+            The Blackleaf Capital 2025-2026 Executive Team
+          </p>
+        </div>
+      </div>
           </div>
         )}
 
@@ -463,39 +497,7 @@ const Sponsors = () => {
 
 
       {/* Executive Message */}
-      <div className="w-[80%] mx-auto my-20 rounded-xl p-8 lg:p-12 ">
-        <h2 className="font-primary text-2xl uppercase text-center mb-34">Executive Message</h2>
-       
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="font-secondary text-lg mb-6">
-            "On behalf of the Blackleaf Capital executive team we thank you for considering Blackleaf
-            as a corporate sponsor for the upcoming year. As we enter our third year, we are proud to
-            reflect on how far our organization has come and excited to share our vision for the future."
-          </p>
-          <p className="font-secondary text-lg mb-6">
-            "From the start, Blackleaf set out to transform the finance industry by bridging the gap
-            between potential and opportunity through equitable representation. That mission remains at
-            our core, and in our third year we are equally focused on developing the remarkable talent
-            within our own ranks."
-          </p>
-          <p className="text-lg font-secondary mb-6">
-            "Our members have demonstrated outstanding drive and skill and we are committed to providing
-            them with the resources, mentorship and real world experiences that will help them excel in
-            the competitive world of finance. By nurturing this internal talent we ensure that Blackleaf
-            is not only a gateway to the industry but also a proving ground for the next generation of
-            financial leaders."
-          </p>
-          <p className="text-lg font-secondary mb-6">
-            "As we look ahead we invite you to join us in supporting this mission. Together we can provide
-            Blackleaf's talented members with the opportunities and guidance they need to redefine what
-            leadership in finance looks like."
-          </p>
-          <p className="text-lg font-secondary font-semibold">
-            Sincerely,<br />
-            The Blackleaf Capital 2025-2026 Executive Team
-          </p>
-        </div>
-      </div>
+
 
     {/* Call to Action */}
       <div className="w-[80%] mx-auto text-center">
