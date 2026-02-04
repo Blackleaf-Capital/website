@@ -1,10 +1,7 @@
 import { useEffect, useState } from 'react';
-import LogoMarquee from './LogoMarquee';
-import { getSponsors } from '../apis/sponsors';
 import { getNetworkCounts, type NetworkCounts } from '../apis/counts';
 
 const Impact = () => {
-    const [sponsors, setSponsors] = useState<any[]>([]);
     const [counts, setCounts] = useState<NetworkCounts>({
         totalMembers: 0,
         corporatePartners: 0,
@@ -15,12 +12,10 @@ const Impact = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const [sponsorsImages, networkCounts] = await Promise.all([
-                getSponsors(),
+            const [networkCounts] = await Promise.all([
                 getNetworkCounts()
             ]);
             
-            setSponsors(sponsorsImages);
             setCounts(networkCounts);
         };
 
