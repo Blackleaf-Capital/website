@@ -8,7 +8,7 @@ import './App.css';
 import ScrollToHash from './components/ScrollToHash';
 
 // --- STEP 3: LAZY LOAD YOUR PAGES ---
-const Homepage = lazy(() => import('./pages/HomePage'));
+import Homepage from './pages/HomePage'; // except Homepage makes it slow
 const Events = lazy(() => import('./pages/Events'));
 const Team = lazy(() => import('./pages/Team'));
 const Sponsors = lazy(() => import('./pages/Sponsors'));
