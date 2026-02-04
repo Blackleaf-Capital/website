@@ -21,7 +21,7 @@ const LogoMarquee = ({ title, logos, className = "" }: LogoMarqueeProps) => {
       {/* The wrapper has a 'mask-image' to create a fade effect at the edges.
           'pause-on-hover' refers to the class we added in global CSS.
       */}
-      <div 
+      <div
         className="relative overflow-hidden pause-on-hover"
         style={{
           maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
@@ -32,13 +32,13 @@ const LogoMarquee = ({ title, logos, className = "" }: LogoMarqueeProps) => {
           {duplicatedLogos.map((item, index) => (
             <div
               key={`${item.name}-${index}`}
-              className="flex items-center justify-center flex-shrink-0 w-[140px] md:w-[150px] mx-2 md:mx-10"
+              className={`flex items-center justify-center flex-shrink-0 ${item.name === "TD Securities" ? 'w-[170px] md:w-[180px]' : 'w-[140px] md:w-[150px] '}  mx-2 md:mx-10`}
             >
               {item.logo ? (
                 <img
                   src={item.logo}
                   alt={item.name}
-                  className="h-12 md:h-16 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity duration-300"
+                  className={`${item.name === "TD Securities" ? 'h-18 md:h-22' : 'h-12 md:h-16'} w-auto object-contain opacity-90 hover:opacity-100 transition-opacity duration-300`}
                 />
               ) : (
                 <span className="text-gray-500 font-semibold text-sm md:text-base whitespace-nowrap">
