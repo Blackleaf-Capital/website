@@ -65,11 +65,7 @@ const Impact = () => {
             </div>
 
             {/* Partners Section */}
-            <div className="w-full mx-auto bg-white">
-                <LogoMarquee
-                    logos={sponsors}
-                />
-            </div>
+           
            
         </div>
     )

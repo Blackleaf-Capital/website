@@ -66,7 +66,7 @@ const Team = () => {
   const shouldEnableLoop = executiveTeam.length > 2;
 
   return (
-    <div className="w-[90%] mx-auto lg:py-[10vh] lg:w-full lg:my-[10vh] px-[5%] grid grid-cols-1 lg:grid-cols-[60%_40%] items-center  pb-[30vh] lg:pb-[30vh]">
+    <div className="w-[90%] mx-auto lg:py-[10vh] lg:w-full lg:my-[10vh] px-[5%] grid grid-cols-1 lg:grid-cols-[60%_40%] items-center">
       {/* Left Side - Swiper */}
       <div className="w-full lg:w-[80%] lg:ml-[10%] relative pb-16">
         {/* Custom Navigation Button */}
@@ -77,7 +77,7 @@ const Team = () => {
             }
           }}
           aria-label="View next team member"
-          className="cursor-pointer absolute lg:-left-16 top-1/2 -translate-y-1/2 z-10 bg-black lg:bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-primary/90 transition-all"
+          className="cursor-pointer absolute -right-5 lg:-left-16 top-1/2 -translate-y-1/2 z-10 bg-black lg:bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-primary/90 transition-all"
         >
           <FaArrowRightLong />
         </button>
@@ -163,6 +163,7 @@ const Team = () => {
           </div>
         </Link>
       </div>
+      
     </div>
   );
 };

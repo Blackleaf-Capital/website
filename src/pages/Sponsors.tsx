@@ -188,73 +188,105 @@ const Sponsors = () => {
               </p>
             </div>
 
-            {/* Three Key Benefits */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-              <div className="text-center">
-                <div className="text-6xl font-bold text-primary mb-4">1</div>
-                <h3 className="font-primary text-xl mb-4">Champion Inclusion in the Finance Industry</h3>
-                <p className="text-lg font-secondary">
-                  By supporting Blackleaf, your firm demonstrates a clear commitment to building a more
-                  inclusive industry. Sponsorship provides visibility as a leader in advancing equity
-                  and opportunity, while also fostering a workplace culture that values diversity,
-                  innovation, and long-term success.
-                </p>
+            {/* Three Key Benefits - Compartmentalized */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-16">
+              <div className="relative border border-gray-200 rounded-2xl p-8 bg-white">
+                <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
+                  <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold">
+                    1
+                  </div>
+                </div>
+                <div className="pt-6 text-center">
+                  <h3 className="font-primary text-xl mb-6 uppercase">Champion Inclusion in the Finance Industry</h3>
+                  <p className="text-base font-secondary leading-relaxed">
+                    By supporting Blackleaf, your firm demonstrates a clear commitment to building a more
+                    inclusive industry. Sponsorship provides visibility as a leader in advancing equity
+                    and opportunity, while also fostering a workplace culture that values diversity,
+                    innovation, and long-term success.
+                  </p>
+                </div>
               </div>
-              <div className="text-center">
-                <div className="text-6xl font-bold text-primary mb-4">2</div>
-                <h3 className="font-primary text-xl mb-4">Direct Access to a Network of Black Talent</h3>
-                <p className="text-lg font-secondary">
-                  Blackleaf connects sponsors to a highly skilled pool of students from leading Canadian
-                  universities. This partnership serves as a centralized platform to engage with motivated
-                  Black students who are actively preparing for careers in business and finance, helping
-                  firms strengthen their recruitment pipelines in a meaningful way.
-                </p>
+              
+              <div className="relative border border-gray-200 rounded-2xl p-8 bg-white">
+                <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
+                  <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold">
+                    2
+                  </div>
+                </div>
+                <div className="pt-6 text-center">
+                  <h3 className="font-primary text-xl mb-6 uppercase">Direct Access to a Network of Black Talent</h3>
+                  <p className="text-base font-secondary leading-relaxed">
+                    Blackleaf connects sponsors to a highly skilled pool of students from leading Canadian
+                    universities. This partnership serves as a centralized platform to engage with motivated
+                    Black students who are actively preparing for careers in business and finance, helping
+                    firms strengthen their recruitment pipelines in a meaningful way.
+                  </p>
+                </div>
               </div>
-              <div className="text-center">
-                <div className="text-6xl font-bold text-primary mb-4">3</div>
-                <h3 className="font-primary text-xl mb-4">Develop the Next Generation of Black Leaders</h3>
-                <p className="text-lg font-secondary">
-                  Through the Blackleaf Educational Program, sponsors play a direct role in equipping
-                  students with the technical skills, mentorship, and industry insights needed to thrive.
-                  Your support ensures a strong and sustainable pipeline of Black professionals who are
-                  prepared to succeed and lead in the industry.
-                </p>
+              
+              <div className="relative border border-gray-200 rounded-2xl p-8 bg-white">
+                <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
+                  <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold">
+                    3
+                  </div>
+                </div>
+                <div className="pt-6 text-center">
+                  <h3 className="font-primary text-xl mb-6 uppercase">Develop the Next Generation of Black Leaders</h3>
+                  <p className="text-base font-secondary leading-relaxed">
+                    Through the Blackleaf Educational Program, sponsors play a direct role in equipping
+                    students with the technical skills, mentorship, and industry insights needed to thrive.
+                    Your support ensures a strong and sustainable pipeline of Black professionals who are
+                    prepared to succeed and lead in the industry.
+                  </p>
+                </div>
               </div>
             </div>
 
-            <div className="w-[80%] mx-auto my-20 rounded-xl p-8 lg:p-12 ">
-        <h2 className="font-primary text-2xl uppercase text-center mb-34">Executive Message</h2>
-       
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="font-secondary text-lg mb-6">
-            "On behalf of the Blackleaf Capital executive team we thank you for considering Blackleaf
-            as a corporate sponsor for the upcoming year. As we enter our third year, we are proud to
-            reflect on how far our organization has come and excited to share our vision for the future."
-          </p>
-          <p className="font-secondary text-lg mb-6">
-            "From the start, Blackleaf set out to transform the finance industry by bridging the gap
-            between potential and opportunity through equitable representation. That mission remains at
-            our core, and in our third year we are equally focused on developing the remarkable talent
-            within our own ranks."
-          </p>
-          <p className="text-lg font-secondary mb-6">
-            "Our members have demonstrated outstanding drive and skill and we are committed to providing
-            them with the resources, mentorship and real world experiences that will help them excel in
-            the competitive world of finance. By nurturing this internal talent we ensure that Blackleaf
-            is not only a gateway to the industry but also a proving ground for the next generation of
-            financial leaders."
-          </p>
-          <p className="text-lg font-secondary mb-6">
-            "As we look ahead we invite you to join us in supporting this mission. Together we can provide
-            Blackleaf's talented members with the opportunities and guidance they need to redefine what
-            leadership in finance looks like."
-          </p>
-          <p className="text-lg font-secondary font-semibold">
-            Sincerely,<br />
-            The Blackleaf Capital 2025-2026 Executive Team
-          </p>
-        </div>
-      </div>
+            <div className="w-full mx-auto my-20 rounded-xl p-4 lg:p-12">
+              <h2 className="font-primary text-2xl uppercase text-center mb-12">Executive Message</h2>
+              
+              <div className="w-[120%] -ml-[10%] lg:w-full lg:ml-0 mx-auto">
+                <div className="relative">
+                  {/* Left border that stops before the quote */}
+                  <div className="absolute left-0 top-0 w-1 bg-primary" style={{height: 'calc(100% - 2rem)'}}></div>
+                  
+                  <div className="pl-6 lg:pl-8">
+                    <div className="space-y-6">
+                      <p className="font-secondary text-base lg:text-lg leading-relaxed">
+                        "On behalf of the Blackleaf Capital executive team we thank you for considering Blackleaf
+                        as a corporate sponsor for the upcoming year. As we enter our third year, we are proud to
+                        reflect on how far our organization has come and excited to share our vision for the future."
+                      </p>
+                      <p className="font-secondary text-base lg:text-lg leading-relaxed">
+                        "From the start, Blackleaf set out to transform the finance industry by bridging the gap
+                        between potential and opportunity through equitable representation. That mission remains at
+                        our core, and in our third year we are equally focused on developing the remarkable talent
+                        within our own ranks."
+                      </p>
+                      <p className="font-secondary text-base lg:text-lg leading-relaxed">
+                        "Our members have demonstrated outstanding drive and skill and we are committed to providing
+                        them with the resources, mentorship and real world experiences that will help them excel in
+                        the competitive world of finance. By nurturing this internal talent we ensure that Blackleaf
+                        is not only a gateway to the industry but also a proving ground for the next generation of
+                        financial leaders."
+                      </p>
+                      <p className="font-secondary text-base lg:text-lg leading-relaxed">
+                        "As we look ahead we invite you to join us in supporting this mission. Together we can provide
+                        Blackleaf's talented members with the opportunities and guidance they need to redefine what
+                        leadership in finance looks like."
+                      </p>
+                    </div>
+                    
+                    <div className="mt-8 pt-6 border-t border-gray-200">
+                      <p className="font-secondary text-base lg:text-lg font-semibold">
+                        Sincerely,<br />
+                        The Blackleaf Capital 2025-2026 Executive Team
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         )}
 
@@ -304,14 +336,14 @@ const Sponsors = () => {
             {/* Core Industries */}
             <div className="mb-16">
               <h3 className="font-primary text-xl text-center mb-8">We Selectively Focus on Six Core Industries</h3>
-              <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
                 {coreIndustries.map((industry, index) => (
-                  <div key={index} className="bg-primary text-white p-6 rounded-lg text-center">
-                    <h4 className="font-primary text-lg">{industry}</h4>
+                  <div key={index} className="bg-primary text-white p-4 lg:p-6 rounded-lg text-center min-h-[80px] flex items-center justify-center">
+                    <h4 className="font-primary text-base lg:text-lg leading-tight">{industry}</h4>
                   </div>
                 ))}
               </div>
-              <p className="text-center text-lg font-secondary mt-6 max-w-4xl mx-auto">
+              <p className="text-center text-base lg:text-lg font-secondary mt-6 max-w-4xl mx-auto px-4 lg:px-0">
                 Analysts will be assigned to one of these six groups each year based on their experience
                 and expertise, and each group will be expected to generate two investment opportunities
                 annually. This allows analysts to develop a level of expertise within their respective
@@ -388,7 +420,7 @@ const Sponsors = () => {
                 {keyOperations.map((operation, index) => (
                   <div key={index} className="border border-gray-200 rounded-lg overflow-hidden p-6">
                     <div className="flex items-start gap-4">
-                      <div className="text-4xl font-bold text-primary flex-shrink-0">
+                      <div className="text-4xl font-bold text-primary shrink-0">
                         {index + 1}
                       </div>
                       <div>

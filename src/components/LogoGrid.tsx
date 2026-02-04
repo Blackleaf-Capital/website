@@ -15,13 +15,13 @@ const LogoGrid = ({ title, logos, className = "" }: LogoGridProps) => {
         {logos.map((item, index) => (
           <div
             key={index}
-            className="flex items-center justify-center h-16 w-full"
+            className={`flex items-center justify-center h-16 w-full ${item.name === "TD Securities" ? 'w-[160px] md:w-[170px]' : 'w-[140px] md:w-[150px] '} `}
           >
             {item.logo ? (
               <img
                 src={item.logo}
                 alt={item.name}
-                className="h-12 w-auto object-contain hover:grayscale-0 transition-all duration-300"
+                className={`${item.name === "TD Securities" ? 'h-16 md:h-20' : 'h-12 md:h-16'} w-auto object-contain hover:grayscale-0 transition-all duration-300`}
               />
             ) : (
               <span className="text-gray-600 font-semibold text-center px-4">

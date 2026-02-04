@@ -374,6 +374,8 @@ const Team = () => {
       <div id="pastexec" className="lg:w-[80%] mx-auto px-4 my-[20vh]">
         {/* Desktop Table */}
         <div className="hidden md:block">
+        <h2 className="w-full mx-auto  font-primary text-2xl uppercase my-2 mb-8">PAST EXECUTIVES</h2>
+
           <div className="grid grid-cols-4 items-center py-3 font-semibold text-gray-700">
             <div>Year</div>
             <div>CEO</div>
@@ -432,6 +434,8 @@ const Team = () => {
 
         {/* Mobile Layout */}
         <div className="md:hidden space-y-6 w-[90%] mx-auto">
+        <h2 className="w-full mx-auto font-primary text-2xl uppercase my-2 mb-8">PAST EXECUTIVES</h2>
+
           {pastExecutives && pastExecutives.map((item) => (
             <div
               key={item.id}
