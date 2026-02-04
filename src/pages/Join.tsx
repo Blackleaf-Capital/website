@@ -101,7 +101,7 @@ const Join = () => {
       </div>
     </div>
 
-    <div className="w-[80%] mx-auto my-[8vh] lg:pt-0">
+    <div className="w-[80%] mx-auto lg:pt-0">
       <div className="w-[50%]">
         <div className="hidden lg:flex flex-col w-full mx-auto">
           <div className="w-fit rounded-4xl border border-primary px-6 py-2 mb-5 text-primary">Application Process</div>
@@ -114,7 +114,7 @@ const Join = () => {
           </p>
         </div>
       </div>
-      <div className="lg:hidden w-[126%] -ml-[13%] mx-auto bg-primary py-5 px-[5%] mb-8 lg:mb-0">
+      <div className="lg:hidden w-[126%] mt-10 -ml-[13%] mx-auto bg-primary py-5 px-[5%] mb-8 lg:mb-0">
         <h2 className="ml-[5%] font-primary text-2xl lg:text-4xl my-2 text-white">
           Join Blackleaf
         </h2>
@@ -215,7 +215,7 @@ const Join = () => {
 
 
     </div>
-    <div ref={formRef} className="pb-20"></div>
+    <div ref={formRef} className=""></div>
     <MembershipForm />
     <div className="w-[80%] mx-auto">
       <LogoGrid

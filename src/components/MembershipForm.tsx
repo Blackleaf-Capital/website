@@ -20,7 +20,7 @@ const MembershipForm = () => {
       }, []);
 
     return (
-        <div className=" w-full lg:w-[80%] lg:h-[50vh] mx-auto rounded-xl p-10 my-[15vh] grid grid-cols-1 lg:grid-cols-[30%_70%] items-center">
+    <div className="my-[20vh] w-full lg:w-[80%] lg:h-[50vh] mx-auto rounded-xl p-10 grid grid-cols-1 lg:grid-cols-[30%_70%] items-center">
             <div className="relative mb-10 lg:mb-0 w-full aspect-square bg-primary rounded-2xl overflow-visible flex justify-center">
                 <img
                     src={ctaPhoto}

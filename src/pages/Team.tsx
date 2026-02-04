@@ -163,7 +163,7 @@ const Team = () => {
         </div>
       </div>
 
-      <div className="w-[90%] mx-auto mt-20">
+      <div className="w-[90%] mx-auto mt-10">
         <h2 className="w-full lg:w-[90%] font-primary text-2xl uppercase my-2 mb-8">Executive Team</h2>
         <div className="w-[90%] mx-auto py-20 grid grid-cols-1 lg:grid-cols-3 gap-5">
           {executiveTeam.map((member, index) => (
@@ -374,7 +374,7 @@ const Team = () => {
       <div id="pastexec" className="lg:w-[80%] mx-auto px-4 my-[20vh]">
         {/* Desktop Table */}
         <div className="hidden md:block">
-        <h2 className="w-full mx-auto  font-primary text-2xl uppercase my-2 mb-8">PAST EXECUTIVES</h2>
+          <h2 className="w-full mx-auto  font-primary text-2xl uppercase my-2 mb-8">PAST EXECUTIVES</h2>
 
           <div className="grid grid-cols-4 items-center py-3 font-semibold text-gray-700">
             <div>Year</div>
@@ -434,7 +434,7 @@ const Team = () => {
 
         {/* Mobile Layout */}
         <div className="md:hidden space-y-6 w-[90%] mx-auto">
-        <h2 className="w-full mx-auto font-primary text-2xl uppercase my-2 mb-8">PAST EXECUTIVES</h2>
+          <h2 className="w-full mx-auto font-primary text-2xl uppercase my-2 mb-8">PAST EXECUTIVES</h2>
 
           {pastExecutives && pastExecutives.map((item) => (
             <div
@@ -477,7 +477,7 @@ const Team = () => {
                     )}
                   </span>
                 </div>
-                
+
                 <div className="flex justify-between">
                   <span className="font-medium">CIO</span>
                   <span>
@@ -494,7 +494,7 @@ const Team = () => {
                   </span>
                 </div>
 
-               
+
               </div>
             </div>
           ))
