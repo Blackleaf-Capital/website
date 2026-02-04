@@ -11,5 +11,5 @@ export default defineConfig({
     webp: { quality: 80 }, // This makes WebP versions much smaller
     avif: { quality: 70 },
   }),],
-  base: "/website/",
+  base: "/",
 });
