@@ -4,6 +4,7 @@ import LogoGrid from "../components/LogoGrid";
 import { getJoinPhoto, getSponsorPhoto } from "../apis/homepage";
 import { getSponsors } from "../apis/sponsors";
 import { HiOutlineUserGroup } from "react-icons/hi2";
+import { getPortfolios } from "../apis/portfolio";
 // import { getExecMembers } from "../apis/members";
 // import { getEvents } from "../apis/events";
 
@@ -14,17 +15,22 @@ const Sponsors = () => {
   const [sponsors, setSponsors] = useState<any[]>([]);
   // const [events, setEvents] = useState<any[]>([]);
   const [joinPhoto, setjoinPhoto] = useState<string>("");
+  const [portfolios, setPortfolios] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const sponsorPhoto = await getSponsorPhoto();
       const joinPhoto = await getJoinPhoto();
       const sponsorsImages = await getSponsors();
+      const portfolio = await getPortfolios();
       // const eventsData = await getEvents();
+
+      console.log(portfolio)
 
       setSponsors(sponsorsImages);
       setSponsorPhoto(sponsorPhoto[0].image);
       setjoinPhoto(joinPhoto[0].image);
+      setPortfolios(portfolio)
       // setEvents(eventsData || []);
     };
 
@@ -58,12 +64,10 @@ const Sponsors = () => {
 
 
 
-  const investmentTeamCompanies = [
-    { name: "Lamb West", ticker: "NYSE: LW" },
-    { name: "Secure", ticker: "TSX: SFS" },
-    { name: "Dollar Tree", ticker: "NASDAQ: DLTR" },
-    { name: "Perdoceo", ticker: "NASDAQ: PRDO" }
-  ];
+  const investmentTeamCompanies = portfolios.map(item => ({
+    name: item.company,
+    ticker: item.ticker
+  }));
 
   const coreIndustries = [
     "Consumer",
@@ -106,9 +110,9 @@ const Sponsors = () => {
 
 
   return (
-    <div className="pt-[5vh] lg:pt-0 pb-[20vh]">
+    <div className="pt-[5vh] lg:pt-[10vh] pb-[20vh]">
       {/* Hero Section */}
-      <div className="mx-auto lg:min-h-[90vh] w-[80%] grid grid-cols-1 lg:grid-cols-[50%_50%] items-center gap-5">
+      <div className="mx-auto lg:max-h-[90vh] w-[80%] grid grid-cols-1 lg:grid-cols-[50%_50%] items-center gap-5">
         <div className="flex flex-col justify-center">
           <div className="w-fit rounded-4xl border border-primary px-6 py-2 mb-5 text-primary">Partnership Opportunities</div>
           <h2 className="w-full lg:w-[90%] font-primary text-2xl lg:text-3xl uppercase my-2">Champion Inclusion in Finance</h2>
@@ -132,20 +136,40 @@ const Sponsors = () => {
       </div>
 
       {/* Mission Statement */}
-      <div className="w-[80%] mx-auto my-20 text-center">
-        <h3 className="font-primary text-xl uppercase mb-6">Our Mission</h3>
-        <p className="text-lg font-secondary max-w-4xl mx-auto">
-          Blackleaf is Canada's leading nationwide student-run nonprofit organization focused on educating
-          Black students on the finance industry through professional development opportunities and practical
-          experience investing in a long-only equities investment fund. Blackleaf Capital is committed to
-          developing future Black leaders in the financial services industry by bridging the gap between
-          potential and opportunity.
-        </p>
+      <div className="w-[80%] mx-auto my-20 ">
+        <div className="text-center mb-4">
+          <h3 className="font-primary text-2xl uppercase mb-2">Our Mission</h3>
+        </div>
+
+        {/* Mission Content with Clean Box Design */}
+        <div className="relative border border-gray-200 rounded-2xl p-8 lg:p-12 bg-white">
+          {/* Decorative line element */}
+          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <div className="w-26 h-1 bg-primary rounded-full"></div>
+          </div>
+
+          <div className="space-y-6">
+            <p className="text-lg lg:text-xl font-secondary leading-relaxed text-center max-w-4xl mx-auto">
+              Blackleaf is Canada's leading nationwide student-run nonprofit organization focused on educating
+              Black students on the finance industry through professional development opportunities and practical
+              experience investing in a long-only equities investment fund.
+            </p>
+
+            {/* Divider line */}
+            <div className="w-24 h-px bg-gray-300 mx-auto my-8"></div>
+
+            <p className="text-lg lg:text-xl font-secondary leading-relaxed text-center max-w-4xl mx-auto font-medium text-primary">
+              Blackleaf Capital is committed to developing future Black leaders in the financial services
+              industry by bridging the gap between potential and opportunity.
+            </p>
+          </div>
+        </div>
       </div>
+
 
       {/* Tab Navigation */}
       <div className="w-[80%] mx-auto mb-10">
-        <div className="flex flex-wrap justify-center gap-4 mb-8">
+        <div className="flex flex-wrap justify-center gap-4 mb-16">
           <button
             onClick={() => setActiveTab('benefits')}
             className={`px-6 py-3 rounded-full transition-all ${activeTab === 'benefits'
@@ -179,13 +203,25 @@ const Sponsors = () => {
         {activeTab === 'benefits' && (
           <div className="space-y-16">
             {/* Corporate Sponsors' Benefits */}
-            <div className="text-center mb-12">
+            <div className="text-center mb-18">
               <h2 className="font-primary text-2xl uppercase mb-8">Corporate Sponsors' Benefits</h2>
-              <p className="text-lg font-secondary max-w-3xl mx-auto mb-12">
-                Blackleaf seeks to have a corporate sponsorship relationship that is of mutual benefit.
-                We understand and appreciate the resources provided to us and aim to be a non-profit
-                organization that provides long-term value and satisfaction to our sponsors.
-              </p>
+
+              {/* Enhanced intro with clean box design */}
+              <div className="relative border border-gray-200 rounded-2xl p-8 bg-gray-50/30 max-w-4xl mx-auto">
+                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                  <div className="w-12 h-12 bg-white border border-gray-200 rounded-full flex items-center justify-center">
+                    <div className="w-6 h-6 bg-primary rounded-full"></div>
+                  </div>
+                </div>
+
+                <div className="pt-4">
+                  <p className="text-lg font-secondary leading-relaxed">
+                    Blackleaf seeks to have a corporate sponsorship relationship that is of mutual benefit.
+                    We understand and appreciate the resources provided to us and aim to be a non-profit
+                    organization that provides long-term value and satisfaction to our sponsors.
+                  </p>
+                </div>
+              </div>
             </div>
 
             {/* Three Key Benefits - Compartmentalized */}
@@ -206,7 +242,7 @@ const Sponsors = () => {
                   </p>
                 </div>
               </div>
-              
+
               <div className="relative border border-gray-200 rounded-2xl p-8 bg-white">
                 <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
                   <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold">
@@ -223,7 +259,7 @@ const Sponsors = () => {
                   </p>
                 </div>
               </div>
-              
+
               <div className="relative border border-gray-200 rounded-2xl p-8 bg-white">
                 <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
                   <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold">
@@ -244,12 +280,12 @@ const Sponsors = () => {
 
             <div className="w-full mx-auto my-20 rounded-xl p-4 lg:p-12">
               <h2 className="font-primary text-2xl uppercase text-center mb-12">Executive Message</h2>
-              
+
               <div className="w-[120%] -ml-[10%] lg:w-full lg:ml-0 mx-auto">
                 <div className="relative">
                   {/* Left border that stops before the quote */}
-                  <div className="absolute left-0 top-0 w-1 bg-primary" style={{height: 'calc(100% - 2rem)'}}></div>
-                  
+                  <div className="absolute left-0 top-0 w-1 bg-primary" style={{ height: 'calc(100% - 2rem)' }}></div>
+
                   <div className="pl-6 lg:pl-8">
                     <div className="space-y-6">
                       <p className="font-secondary text-base lg:text-lg leading-relaxed">
@@ -276,7 +312,7 @@ const Sponsors = () => {
                         leadership in finance looks like."
                       </p>
                     </div>
-                    
+
                     <div className="mt-8 pt-6 border-t border-gray-200">
                       <p className="font-secondary text-base lg:text-lg font-semibold">
                         Sincerely,<br />
@@ -303,33 +339,62 @@ const Sponsors = () => {
 
             {/* Investment Philosophy */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-              <div>
-                <h3 className="font-primary text-xl mb-6">Practical Investment Experience</h3>
-                <p className="text-lg font-secondary mb-4">
-                  Blackleaf Capital operates a virtual long-only public equity investment portfolio with
-                  the purpose of educating students through practical and real-world experience. By
-                  developing unique investment ideas, students can iteratively hone their abilities to
-                  build and apply investment theses to real equity securities.
-                </p>
-                <p className="text-lg font-secondary">
-                  Members gain exposure to the full investment cycle, including researching industries,
-                  valuing companies, and pitching ideas, while developing soft skills that prepare them
-                  for future careers in finance, consulting, and other competitive industries.
-                </p>
+              {/* Practical Investment Experience Box */}
+              <div className="relative border border-gray-200 rounded-2xl p-8 bg-white">
+                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                  <div className="w-16 h-1 bg-primary rounded-full"></div>
+                </div>
+
+                <div className="pt-4">
+                  <h3 className="font-primary text-xl mb-6 text-center">Practical Investment Experience</h3>
+
+                  <div className="space-y-4">
+                    <p className="text-lg font-secondary leading-relaxed">
+                      Blackleaf Capital operates a virtual long-only public equity investment portfolio with
+                      the purpose of educating students through practical and real-world experience. By
+                      developing unique investment ideas, students can iteratively hone their abilities to
+                      build and apply investment theses to real equity securities.
+                    </p>
+
+                    {/* Divider line */}
+                    <div className="w-16 h-px bg-gray-300 mx-auto my-6"></div>
+
+                    <p className="text-lg font-secondary leading-relaxed">
+                      Members gain exposure to the full investment cycle, including researching industries,
+                      valuing companies, and pitching ideas, while developing soft skills that prepare them
+                      for future careers in finance, consulting, and other competitive industries.
+                    </p>
+                  </div>
+                </div>
               </div>
-              <div>
-                <h3 className="font-primary text-xl mb-6">Investment Philosophy</h3>
-                <p className="text-lg font-secondary mb-4">
-                  The primary investment philosophy is a long-term value investing approach. Students
-                  will be expected to conduct in-depth analysis of securities with the intention of
-                  identifying companies that are mispriced and undervalued in the market, providing
-                  a substantial margin of safety.
-                </p>
-                <p className="text-lg font-secondary">
-                  The principal focus of investment opportunities is "great businesses at undervalued prices",
-                  ensuring the portfolio only consists of high-quality assets. In order to maintain a
-                  diversified basket of assets, no position will make up more than 7% of the fund.
-                </p>
+
+              {/* Investment Philosophy Box */}
+              <div className="relative border border-gray-200 rounded-2xl p-8 bg-white">
+                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                  <div className="w-16 h-1 bg-primary rounded-full"></div>
+                </div>
+
+                <div className="pt-4">
+                  <h3 className="font-primary text-xl mb-6 text-center">Investment Philosophy</h3>
+
+                  <div className="space-y-4">
+                    <p className="text-lg font-secondary leading-relaxed">
+                      The primary investment philosophy is a long-term value investing approach. Students
+                      will be expected to conduct in-depth analysis of securities with the intention of
+                      identifying companies that are mispriced and undervalued in the market, providing
+                      a substantial margin of safety.
+                    </p>
+
+                    {/* Divider line */}
+                    <div className="w-16 h-px bg-gray-300 mx-auto my-6"></div>
+
+                    <p className="text-lg font-secondary leading-relaxed">
+                      The principal focus of investment opportunities is "great businesses at undervalued prices",
+                      ensuring the portfolio only consists of high-quality assets. In order to maintain a
+                      diversified basket of assets, no position will make up more than 7% of the fund.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -343,7 +408,7 @@ const Sponsors = () => {
                   </div>
                 ))}
               </div>
-              <p className="text-center text-base lg:text-lg font-secondary mt-6 max-w-4xl mx-auto px-4 lg:px-0">
+              <p className="text-center text-base lg:text-lg font-secondary pt-12 max-w-4xl mx-auto px-4 lg:px-0">
                 Analysts will be assigned to one of these six groups each year based on their experience
                 and expertise, and each group will be expected to generate two investment opportunities
                 annually. This allows analysts to develop a level of expertise within their respective
@@ -354,7 +419,7 @@ const Sponsors = () => {
 
             {/* Investment Team Companies */}
             <div className="mb-16">
-              <h3 className="font-primary text-xl text-center mb-8">Current Portfolio Companies</h3>
+              <h3 className="font-primary text-xl text-center mb-8">Portfolio Companies</h3>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {investmentTeamCompanies.map((company, index) => (
                   <div key={index} className="border border-gray-200 p-6 rounded-lg text-center">
@@ -366,67 +431,65 @@ const Sponsors = () => {
             </div>
 
             {/* Program Structure */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 my-30">
-              <div>
-                <h3 className="font-primary text-xl mb-8">Program Annual Structure</h3>
-                <div className="space-y-4">
-                  <div className="border border-gray-200 rounded-lg overflow-hidden">
-                    <div className="px-6 py-4 bg-white">
-                      <div className="flex justify-between items-center">
-                        <span className="text-lg font-primary text-gray-900">Stock Pitch Presentations</span>
-                        <span className="text-2xl font-bold text-primary">6</span>
-                      </div>
+            <div className="mb-24">
+              <h3 className="font-primary text-xl text-center mb-12">Program Annual Structure</h3>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                {/* Program Annual Structure List */}
+                <div className="space-y-6">
+                  <div className="border border-gray-200 rounded-lg p-6 hover:border-primary transition-colors">
+                    <div className="flex justify-between items-center">
+                      <span className="text-lg font-primary text-gray-900">Stock Pitch Presentations</span>
+                      <span className="text-2xl font-bold text-primary">6</span>
                     </div>
                   </div>
-                  <div className="border border-gray-200 rounded-lg overflow-hidden">
-                    <div className="px-6 py-4 bg-white">
-                      <div className="flex justify-between items-center">
-                        <span className="text-lg font-primary text-gray-900">Industry Update Presentations</span>
-                        <span className="text-2xl font-bold text-primary">6</span>
-                      </div>
+                  <div className="border border-gray-200 rounded-lg p-6 hover:border-primary transition-colors">
+                    <div className="flex justify-between items-center">
+                      <span className="text-lg font-primary text-gray-900">Industry Update Presentations</span>
+                      <span className="text-2xl font-bold text-primary">6</span>
                     </div>
                   </div>
-                  <div className="border border-gray-200 rounded-lg overflow-hidden">
-                    <div className="px-6 py-4 bg-white">
-                      <div className="flex justify-between items-center">
-                        <span className="text-lg font-primary text-gray-900">Investment One Pagers and Positioning</span>
-                        <span className="text-2xl font-bold text-primary">24</span>
-                      </div>
+                  <div className="border border-gray-200 rounded-lg p-6 hover:border-primary transition-colors">
+                    <div className="flex justify-between items-center">
+                      <span className="text-lg font-primary text-gray-900">Investment One Pagers and Positioning</span>
+                      <span className="text-2xl font-bold text-primary">24</span>
                     </div>
                   </div>
-                  <div className="border border-gray-200 rounded-lg overflow-hidden">
-                    <div className="px-6 py-4 bg-white">
-                      <div className="flex justify-between items-center">
-                        <span className="text-lg font-primary text-gray-900">Additional Activities</span>
-                        <span className="text-2xl font-bold text-primary">+</span>
-                      </div>
+                  <div className="border border-gray-200 rounded-lg p-6 hover:border-primary transition-colors">
+                    <div className="flex justify-between items-center">
+                      <span className="text-lg font-primary text-gray-900">Additional Activities</span>
+                      <span className="text-2xl font-bold text-primary">+</span>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="w-full aspect-square lg:aspect-[1/0.8] rounded-xl relative overflow-hidden">
-                <img
-                  src={joinPhoto}
-                  className="w-full rounded-xl h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
-                  alt="Blackleaf Capital Team"
-                />
+
+                <div className="w-full aspect-square lg:aspect-[1/0.8] rounded-lg overflow-hidden">
+                  <img
+                    src={joinPhoto}
+                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                    alt="Blackleaf Capital Team"
+                  />
+                </div>
               </div>
             </div>
 
             {/* Key Operations */}
-            <div className="my-26">
-              <h3 className="font-primary text-xl text-center mb-20">Key Operations</h3>
+            <div className="space-y-12">
+              <h3 className="font-primary text-xl text-center">Key Operations</h3>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {keyOperations.map((operation, index) => (
-                  <div key={index} className="border border-gray-200 rounded-lg overflow-hidden p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="text-4xl font-bold text-primary shrink-0">
+                  <div key={index} className="relative border border-gray-200 rounded-2xl p-8 bg-white">
+                    <div className="absolute -top-4 left-8">
+                      <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-lg font-bold">
                         {index + 1}
                       </div>
-                      <div>
-                        <h4 className="font-primary text-lg mb-2">{operation.title}</h4>
-                        <p className="text-lg font-secondary">{operation.description}</p>
-                      </div>
+                    </div>
+
+                    <div className="pt-4 space-y-4">
+                      <h4 className="font-primary text-lg">{operation.title}</h4>
+
+                      {/* Divider line */}
+                      <p className="text-lg font-secondary leading-relaxed">{operation.description}</p>
                     </div>
                   </div>
                 ))}
@@ -531,7 +594,7 @@ const Sponsors = () => {
       {/* Executive Message */}
 
 
-    {/* Call to Action */}
+      {/* Call to Action */}
       <div className="w-[80%] mx-auto text-center">
         <h2 className="font-primary text-2xl uppercase mb-6">Ready to Partner With Us?</h2>
         <p className="text-lg font-secondary mb-8 max-w-2xl mx-auto">
