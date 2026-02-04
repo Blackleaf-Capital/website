@@ -71,7 +71,7 @@ function AppContent() {
 
 function App() {
   return (
-    <Router basename="/website">
+    <Router>
       <AppContent />
     </Router>
   );
