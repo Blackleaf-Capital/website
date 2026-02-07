@@ -28,7 +28,7 @@ export const getEventByName = async (name: string) => {
       const { data, error } = await supabase
         .from('events')
         .select('*')
-        .eq('title', name)  // or use 'id' if you prefer
+        .eq('id', name)  // or use 'id' if you prefer
 
       if (error) {
         throw new Error(error.message);

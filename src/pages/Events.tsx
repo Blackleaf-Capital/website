@@ -242,7 +242,7 @@ const Events = () => {
               <h2 className="w-full lg:w-[90%] font-primary text-2xl uppercase my-2">{upcomingEvent.title}</h2>
               <p className="text-[18px] w-full font-secondary lg:w-[80%]">{upcomingEvent.description}</p>
               <p className="mt-2">{formatDate(upcomingEvent.date)}</p>
-              <Link to={`/events/${upcomingEvent?.registration_link}`}>
+              <Link to={`/events/${upcomingEvent.registration_link != null ? upcomingEvent.registration_link : upcomingEvent.id}`}>
                 <div className='mt-10 w-fit rounded-4xl bg-primary text-white px-8 py-3 flex flex-row items-center gap-4 cursor-pointer transition-all ease-in-out hover:translate-x-2'>
                   {isUpcoming ? 'Register Now' : 'View Details'}
                   <MdOutlineArrowRightAlt />
@@ -416,7 +416,7 @@ const Events = () => {
           currentEvents.map((event) => (
             <Link 
             onClick={scrollToTop}
-            key={event.id} to={`/events/${event.title}`}>
+            key={event.id} to={`/events/${event.id}`}>
               <EventCard event={event} />
             </Link>
           ))

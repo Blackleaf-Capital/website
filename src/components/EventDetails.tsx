@@ -7,6 +7,7 @@ interface Event {
   id: string;
   name: string;
   description: string;
+  large_description: string;
   date: string;
   image?: string;
   gallery?: string[];
@@ -70,7 +71,7 @@ const EventDetails = () => {
             {event.name}
           </h2>
           <p className="text-[18px] w-full font-secondary lg:w-[80%]">
-            {event.description}
+            {event.large_description}
           </p>
           <button
             className="mt-10 w-fit rounded-4xl bg-primary text-white px-8 py-3 flex flex-row items-center gap-4 cursor-pointer transition-all ease-in-out hover:translate-x-2">
