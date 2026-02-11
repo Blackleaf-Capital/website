@@ -13,6 +13,7 @@ const About = () => {
   useEffect(() => {
     const fetchData = async () => {
       const eventPagesImg = await getEventsImages();
+      console.log("event pages images", eventPagesImg);
       setEventPages(eventPagesImg);
     };
 
@@ -91,63 +92,33 @@ const About = () => {
             </div>
           </div>
         </div>
-        <div className="hidden w-[85%] mx-auto aspect-square rounded-xl items-center justify-center lg:grid grid-cols-2 gap-3">
-          <div className='grid grid-cols-1 gap-3'>
-            <Link onClick={scrollToTop} to={`/events/${eventPages[0]?.title}`}>
-              <div className='w-full rounded-xl aspect-square bg-black overflow-hidden cursor-pointer relative group'>
-                <img
-                  src={eventPages[0]?.image}
-                  alt="Image 1"
-                  className="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-6 text-center">
-                  <h3 className="text-white font-bold text-xl mb-3">{eventPages[0]?.title}</h3>
-                  <p className="text-white/90 text-sm">{eventPages[0]?.description}</p>
+        <div className="hidden  w-[85%] mx-auto aspect-square rounded-xl items-center justify-center lg:grid grid-cols-1">
+          <div className="w-full grid grid-cols-2 gap-3">
+            {eventPages.slice(0, 4).map((event, index) => (
+              <Link
+                key={event?.id || index}
+                onClick={scrollToTop}
+                to={`/events/${event?.id}`}
+              >
+                <div className="w-full rounded-xl aspect-square bg-black overflow-hidden cursor-pointer relative group">
+                  <img
+                    src={event?.image}
+                    alt={`Image ${index + 1}`}
+                    className="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-6 text-center">
+                    <h3 className="text-white font-bold text-xl mb-3">
+                      {event?.title}
+                    </h3>
+                    <p className="text-white/90 text-sm">
+                      {event?.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </Link>
-            <Link onClick={scrollToTop} to={`/events/${eventPages[1]?.title}`}>
-              <div className='w-full rounded-xl aspect-square bg-black overflow-hidden cursor-pointer relative group'>
-                <img
-                  src={eventPages[1]?.image}
-                  alt="Image 2"
-                  className="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-6 text-center">
-                  <h3 className="text-white font-bold text-xl mb-3">{eventPages[1]?.title}</h3>
-                  <p className="text-white/90 text-sm">{eventPages[1]?.description}</p>
-                </div>
-              </div>
-            </Link>
+              </Link>
+            ))}
           </div>
-          <div className='grid grid-cols-1 gap-3'>
-            <Link onClick={scrollToTop} to={`/events/${eventPages[2]?.title}`}>
-              <div className='w-full rounded-xl aspect-square bg-black overflow-hidden cursor-pointer relative group'>
-                <img
-                  src={eventPages[2]?.image}
-                  alt="Image 3"
-                  className="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-6 text-center">
-                  <h3 className="text-white font-bold text-xl mb-3">{eventPages[2]?.title}</h3>
-                  <p className="text-white/90 text-sm">{eventPages[2]?.description}</p>
-                </div>
-              </div>
-            </Link>
-            <Link onClick={scrollToTop} to={`/events/${eventPages[3]?.title}`}>
-              <div className='w-full rounded-xl aspect-square bg-black overflow-hidden cursor-pointer relative group'>
-                <img
-                  src={eventPages[3]?.image}
-                  alt="Image 4"
-                  className="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-6 text-center">
-                  <h3 className="text-white font-bold text-xl mb-3">{eventPages[3]?.title}</h3>
-                  <p className="text-white/90 text-sm">{eventPages[3]?.description}</p>
-                </div>
-              </div>
-            </Link>
-          </div>
+
         </div>
       </div>
 
