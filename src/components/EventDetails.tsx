@@ -28,7 +28,7 @@ const EventDetails = () => {
         setLoading(false);
       }
     };
-  
+
     fetchEvent();
   }, [eventId]);
 
@@ -47,27 +47,37 @@ const EventDetails = () => {
     options?: Intl.DateTimeFormatOptions
   ): string => {
     if (!dateStr) return '';
-  
+
     const date = new Date(dateStr);
-  
+
     // Default options if none provided
     const defaultOptions: Intl.DateTimeFormatOptions = {
       year: 'numeric',
       month: 'long',
       day: 'numeric'
     };
-  
+
     return date.toLocaleDateString(locale, options || defaultOptions);
   };
+
+  const scrollToGallery = () => {
+    const gallery = document.getElementById('gallery')
+    if (gallery) {
+      gallery.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      })
+    }
+  }
 
   return (
     <div className="pt-[5vh] lg:pt-0 pb-[20vh]">
       <div className="mx-auto lg:min-h-[60vh] w-[80%] grid grid-cols-1 lg:grid-cols-[50%_50%] items-center gap-5">
         <div className="flex flex-col justify-center">
-          { event.date &&
-          <div className="w-fit rounded-4xl border border-primary px-6 py-2 mb-5 text-primary">
-            {formatDate(event.date)}
-          </div>}
+          {event.date &&
+            <div className="w-fit rounded-4xl border border-primary px-6 py-2 mb-5 text-primary">
+              {formatDate(event.date)}
+            </div>}
           <h2 className="w-full lg:w-[90%] font-primary text-2xl lg:text-2xl uppercase my-2">
             {event.name}
           </h2>
@@ -75,33 +85,34 @@ const EventDetails = () => {
             {event.large_description}
           </p>
           <button
+            onClick={event.gallery ? scrollToGallery : undefined}
             className="mt-10 w-fit rounded-4xl bg-primary text-white px-8 py-3 flex flex-row items-center gap-4 cursor-pointer transition-all ease-in-out hover:translate-x-2">
-            View Gallery
-            <MdOutlineArrowRightAlt />
+            {event.gallery ? `View Gallery ` : 'No Images available'}
+            {event.gallery && <MdOutlineArrowRightAlt />}
           </button>
         </div>
         <div className={`${event.date ? 'lg:my-0' : 'my-4'} w-full my-10 aspect-square lg:aspect-[1/0.8] rounded-xl relative pb-16 overflow-hidden`}>
           <img
             src={event.image}
             className="w-full rounded-xl h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
-            alt={event.name} 
+            alt={event.name}
           />
         </div>
       </div>
       {event.gallery &&
-      <div className="mx-auto w-[80%] mt-20">
-        <h3 className="text-2xl font-primary mb-8">Event Gallery</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {event.gallery?.map((img, idx) => (
-            <img 
-              key={idx} 
-              src={img} 
-              alt={`Gallery ${idx + 1}`}
-              className="w-full aspect-square object-cover rounded-lg"
-            />
-          ))}
-        </div>
-      </div>}
+        <div  id='gallery' className="mx-auto w-[80%] mt-20">
+          <h3 className="text-2xl font-primary mb-8">Event Gallery</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {event.gallery?.map((img, idx) => (
+              <img
+                key={idx}
+                src={img}
+                alt={`Gallery ${idx + 1}`}
+                className="w-full aspect-square object-cover rounded-lg"
+              />
+            ))}
+          </div>
+        </div>}
     </div>
   );
 };
