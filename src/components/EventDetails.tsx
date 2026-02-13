@@ -98,6 +98,7 @@ const EventDetails = () => {
             alt={event.name}
           />
         </div>
+        
       </div>
       {event.gallery &&
         <div  id='gallery' className="mx-auto w-[80%] mt-20">
