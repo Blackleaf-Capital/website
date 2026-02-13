@@ -25,12 +25,13 @@ export const getEventsImages = async () => {
   return withCache('events-images', async () => {
     try {
       const { data, error } = await supabase
-        .from('images')  
-        .select('*')       
-        .neq('title', null) 
-
+        .from('events')
+        .select('*')
+        .order('id', { ascending: true })
+        .limit(4)
+    
       if (error) {
-        throw new Error(error.message);
+        throw new Error(error.message)
       }
 
       return data;

@@ -217,7 +217,7 @@ const Events = () => {
   return (
     <div className="w-[90%] mx-auto mb-[40vh] bg-white">
       <div className="mx-auto  lg:min-h-[90vh] w-full px-[5%] grid grid-cols-1 lg:grid-cols-[50%_50%] items-center">
-        <div className="w-full my-10 lg:my-0  aspect-square lg:aspect-[1/0.8] lg:-ml-[10%] rounded-xl relative pb-16 flex justify-center items-center">
+        <div className="w-full my-10 lg:my-0  aspect-square lg:aspect-[1/0.8] overflow-hidden lg:-ml-[10%] rounded-xl relative pb-16 flex justify-center items-center">
           <img
             src={upcomingEvent?.image}
             className="w-full rounded-xl my-auto object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
