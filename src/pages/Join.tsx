@@ -81,7 +81,7 @@ const Join = () => {
         </div>
 
         <h2 className="w-full lg:w-[90%] font-primary text-2xl lg:text-2xl uppercase my-2">
-          Student-Led,Industry-Focused.
+          Student-Led, Industry-Focused.
         </h2>
 
         <p className="text-[18px] w-full font-secondary lg:w-[80%]">
